@@ -3,17 +3,27 @@ package pers.howard.personalspace.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import pers.howard.personalspace.model.RemarkItem;
-import pers.howard.personalspace.model.ShareItem;
+import pers.howard.personalspace.model.ShareDetailItem;
+import pers.howard.personalspace.service.PersonalShareService;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
-@RequestMapping("/personal/share")
+@RequestMapping("/personal")
 public class PersonalShareController {
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String toIndex() {
+    @Resource
+    PersonalShareService personalShareService;
 
+    @GetMapping("/index")
+    public String toIndex() {
+        return "personal";
+    }
+
+    @GetMapping("/detail")
+    public String toDetail() {
+        return "personal-detail";
     }
 
     /**
@@ -22,45 +32,45 @@ public class PersonalShareController {
      * @param page 页数
      * @return
      */
-    @RequestMapping(value = "/retrieve", method = RequestMethod.POST)
+    @PostMapping("/retrieve")
     @ResponseBody
-    public List<ShareItem> retrieve(@RequestBody String userID, @RequestParam("page") int page) {
-
+    public List<ShareDetailItem> retrieve(@RequestBody String userID, @RequestParam("page") int page) {
+        return personalShareService.retrieveAt(userID, page);
     }
 
     /**
      * 更新动态状态
      * @param shareID 动态ID
      */
-    @RequestMapping(value = "/status/update", method = RequestMethod.POST)
-    public void updateStatus(@RequestBody String shareID) {
-
+    @PostMapping("/status/update")
+    public void updateStatus(@RequestBody String shareID, @RequestParam("status") boolean status) {
+        personalShareService.updateStatusAt(shareID, status);
     }
 
     /**
      * 删除动态
      * @param shareID 动态ID
      */
-    @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
+    @DeleteMapping("/delete")
     public void delete(@RequestBody String shareID) {
-
+        personalShareService.deleteAt(shareID);
     }
 
     /**
      * 评论
      * @param remarkItem 评论模型
      */
-    @RequestMapping(value = "/remark", method = RequestMethod.POST)
+    @PostMapping("/remark")
     public void remark(@RequestBody RemarkItem remarkItem) {
-
+        personalShareService.remarkWith(remarkItem);
     }
 
     /**
      * 点赞
      * @param shareID 动态ID
      */
-    @RequestMapping(value = "/like", method = RequestMethod.POST)
+    @PostMapping("/like")
     public void like(@RequestBody String shareID) {
-
+        personalShareService.likeAt(shareID);
     }
 }

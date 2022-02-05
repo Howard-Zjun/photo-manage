@@ -1,27 +1,34 @@
 package pers.howard.personalspace.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import pers.howard.personalspace.model.PersonDataItem;
+import pers.howard.personalspace.model.PersonItem;
 import pers.howard.personalspace.model.PreferenceItem;
+import pers.howard.personalspace.service.SettingService;
+
+import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/personal/setting")
+@RequestMapping("/setting")
 public class SettingController {
 
-    @RequestMapping(value = "/index", method = RequestMethod.GET)
-    public String toIndex() {
+    @Resource
+    SettingService settingService;
 
+    @GetMapping("/index")
+    public String toIndex(Model model) {
+        return "index";
     }
 
     /**
      * 更新基本信息
-     * @param personDataItem 个人资料模组
+     * @param personItem 个人资料模组
      */
-    @RequestMapping(value = "/basic/update", method = RequestMethod.POST)
-    public void updateBasic(@RequestBody PersonDataItem personDataItem) {
-
+    @PostMapping("/basic/update")
+    public void updateBasic(@RequestBody PersonItem personItem) {
+        settingService.updateBasicWith(personItem);
     }
 
     /**
@@ -29,10 +36,10 @@ public class SettingController {
      * @param userID 用户ID
      * @return
      */
-    @RequestMapping(value = "/basic/retrieve", method = RequestMethod.POST)
+    @PostMapping("/basic/retrieve")
     @ResponseBody
-    public PersonDataItem retrieveBasic(@RequestBody String userID) {
-
+    public PersonItem retrieveBasic(@RequestBody String userID) {
+        return settingService.retrieveBasicAt(userID);
     }
 
     /**
@@ -40,18 +47,18 @@ public class SettingController {
      * @param userID 用户ID
      * @param file 头像
      */
-    @RequestMapping(value = "/icon/update", method = RequestMethod.POST)
+    @PostMapping("/icon/update")
     public void updateIcon(@RequestBody String userID, @RequestParam("file") MultipartFile file) {
-
+        settingService.updateHeadIconAt(userID, file);
     }
 
     /**
      * 更新个人偏好
      * @param preferenceItem 偏好模组
      */
-    @RequestMapping(value = "/prefer/update", method = RequestMethod.POST)
+    @PostMapping(value = "/prefer/update")
     public void updatePrefer(@RequestBody PreferenceItem preferenceItem) {
-
+        settingService.updatePreferenceWith(preferenceItem);
     }
 
     /**
@@ -59,9 +66,9 @@ public class SettingController {
      * @param userID
      * @return
      */
-    @RequestMapping(value = "/prefer/retrieve", method = RequestMethod.POST)
+    @PostMapping(value = "/prefer/retrieve")
     @ResponseBody
     public PreferenceItem retrievePrefer(@RequestBody String userID) {
-
+        return settingService.retrievePreferenceAt(userID);
     }
 }

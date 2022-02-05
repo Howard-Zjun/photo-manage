@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.howard.personalspace.dao.ShareDao">
+
+    <update id="updateStatusAt">
+        update share set show = #{status} where share_id = #{shareID}
+    </update>
+
+    <select id="retrievePreviewAt" resultType="pers.howard.personalspace.model.SharePreviewItem">
+        select * from share
+                          left join share_replenish on share.share_id = share_replenish.share_id
+                          left join share_photo_set on share.share_id = share_photo_set.share_id
+    </select>
+
+    <select id="retrieveDetailAt" resultType="pers.howard.personalspace.model.ShareDetailItem">
+        select * from share
+            left join share_photo_set sps on share.share_id = sps.share_id
+            where share.share_id = #{shareId}
+    </select>
+
+    <select id="retrieveRemarkAt" resultType="pers.howard.personalspace.model.RemarkItem">
+        select * from share_interaction, user where share_id = ${shareId} and share_interaction.user_id = user.user_id
+    </select>
+
+    <select id="retrievePersonItemName" resultType="java.lang.String">
+        select name from user where user_id = (select user_id from share where share_id = ${shareId})
+    </select>
+    <select id="retrieveStatusAt">
+        select `show` from share where user_id = #{userID}
+    </select>
+
+    <delete id="deleteAt">
+        delete from share where share_id = #{shareID}
+    </delete>
+
+    <insert id="remarkWith" parameterType="pers.howard.personalspace.model.RemarkItem">
+        insert into share_interaction
+            (share_id, user_id, detail, send_date)
+        values (#{shareID}, #{userID}, #{detail}, #{sendTime})
+    </insert>
+
+    <update id="likeAt">
+        update share_replenish set like_num = like_num + 1 where share_id = #{shareID}
+    </update>
+</mapper>

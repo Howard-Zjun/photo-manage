@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * 个人资料模型
  */
-public class PersonDataItem {
+public class PersonItem {
     private String userID;// 唯一码
     private String name;
     private boolean sex;
@@ -15,7 +15,7 @@ public class PersonDataItem {
     private String email;
     private String introduction;
 
-    public PersonDataItem(String userID, String name, boolean sex, String address, Date birth, String phone, String email, String introduction) {
+    public PersonItem(String userID, String name, boolean sex, String address, Date birth, String phone, String email, String introduction) {
         this.userID = userID;
         this.name = name;
         this.sex = sex;
