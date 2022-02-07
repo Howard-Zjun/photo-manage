@@ -25,6 +25,11 @@
     <select id="retrievePersonItemName" resultType="java.lang.String">
         select name from user where user_id = (select user_id from share where share_id = ${shareId})
     </select>
+
+    <insert id="insertRemarkItem" parameterType="pers.howard.personalspace.model.LogRemarkItem">
+        insert into share_interaction
+        values (null, #{item.shareId}, #{item.userId}, #{item.detail}, #{item.sendDate});
+    </insert>
     <select id="retrieveStatusAt">
         select `show` from share where user_id = #{userID}
     </select>
@@ -39,7 +44,11 @@
         values (#{shareID}, #{userID}, #{detail}, #{sendTime})
     </insert>
 
-    <update id="likeAt">
-        update share_replenish set like_num = like_num + 1 where share_id = #{shareID}
+    <update id="increaseLikeAt">
+        update share_replenish set like_num = like_num + 1 where share_id = #{shareId}
     </update>
+
+    <select id="retrievePersonalPreviewAt" resultType="pers.howard.personalspace.model.PhotoPreviewItem">
+        select * from share a, share_photo_set b where a.share_id = b.share_id group by photo_path
+    </select>
 </mapper>

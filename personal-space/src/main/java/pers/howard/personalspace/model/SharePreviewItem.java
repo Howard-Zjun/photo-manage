@@ -9,6 +9,7 @@ public class SharePreviewItem {
     protected String title;
     protected Date sendDate;
     protected String detail;
+    protected String tags;
     protected String photoPath;
     protected int visitNum;
     protected int remarkNum;
@@ -28,6 +29,9 @@ public class SharePreviewItem {
         final int month = calendar.get(Calendar.MONTH);
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat(" dd, yyyy");
         return monthName[month] + simpleDateFormat.format(sendDate);
+    }
+    public String[] defaultTagsFormat() {
+        return tags.split(";");
     }
 
     public String getTitle() {
@@ -60,6 +64,14 @@ public class SharePreviewItem {
 
     public void setDetail(String detail) {
         this.detail = detail;
+    }
+
+    public String getTags() {
+        return tags;
+    }
+
+    public void setTags(String tags) {
+        this.tags = tags;
     }
 
     public String getPhotoPath() {

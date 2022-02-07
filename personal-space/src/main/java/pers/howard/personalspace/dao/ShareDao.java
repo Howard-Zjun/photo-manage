@@ -2,9 +2,7 @@ package pers.howard.personalspace.dao;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import pers.howard.personalspace.model.RemarkItem;
-import pers.howard.personalspace.model.ShareDetailItem;
-import pers.howard.personalspace.model.SharePreviewItem;
+import pers.howard.personalspace.model.*;
 
 import java.util.List;
 
@@ -32,8 +30,24 @@ public interface ShareDao {
      * 检索文章作者名
      */
     String retrievePersonItemName(@Param("shareId") String shareId);
+
+    /**
+     * 新增评论
+     */
+    void insertRemarkItem(@Param("item") LogRemarkItem logRemarkItem);
+
+    /**
+     * 文章点赞增长
+     */
+    void increaseLikeAt(String shareId);
+
+    /**
+     * 检索个人文章预览
+     */
+    List<PhotoPreviewItem> retrievePersonalPreviewAt(@Param("userId") String userId);
+
     boolean retrieveStatusAt(@Param("shareID") String shareID);
     void deleteAt(@Param("shareID") String shareID);
     void remarkWith(RemarkItem remarkItem);
-    void likeAt(String shareID);
+
 }

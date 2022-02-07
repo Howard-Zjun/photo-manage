@@ -4,8 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import pers.howard.personalspace.model.LogRemarkItem;
 import pers.howard.personalspace.model.RemarkItem;
 import pers.howard.personalspace.model.ShareDetailItem;
 import pers.howard.personalspace.model.SharePreviewItem;
@@ -38,5 +38,17 @@ public class HomeController {
         model.addAttribute("remarks", remarks);
         model.addAttribute("name", name);
         return "index-detail";
+    }
+
+    @PostMapping("/remark/log")
+    @ResponseBody
+    public void insertComment(@RequestBody LogRemarkItem logRemarkItem) {
+        homeService.insertRemarkItem(logRemarkItem);
+    }
+
+    @PostMapping("/like")
+    @ResponseBody
+    public void likeAt(@RequestBody String shareId) {
+        homeService.likeAt(shareId);
     }
 }

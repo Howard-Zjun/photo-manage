@@ -2,15 +2,18 @@ package pers.howard.personalspace.service.impl;
 
 import org.springframework.stereotype.Service;
 import pers.howard.personalspace.dao.ShareDao;
+import pers.howard.personalspace.model.PhotoPreviewItem;
 import pers.howard.personalspace.model.RemarkItem;
 import pers.howard.personalspace.model.ShareDetailItem;
-import pers.howard.personalspace.service.PersonalShareService;
+import pers.howard.personalspace.service.PersonalService;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @Service
-public class PersonalShareServiceImpl implements PersonalShareService {
+public class PersonalServiceImpl implements PersonalService {
 
     @Resource
     ShareDao shareDao;
@@ -41,7 +44,22 @@ public class PersonalShareServiceImpl implements PersonalShareService {
     }
 
     @Override
-    public void likeAt(String shareID) {
-        shareDao.likeAt(shareID);
+    public void likeAt(String shareId) {
+        shareDao.increaseLikeAt(shareId);
+    }
+
+    @Override
+    public List<PhotoPreviewItem> previewItems(String userId) {
+        return shareDao.retrievePersonalPreviewAt(userId);
+    }
+
+    @Override
+    public List<String> previewTags(List<PhotoPreviewItem> list) {
+        HashSet<String> set = new HashSet<>();
+        for (PhotoPreviewItem item : list) {
+            for (String str : item.splitTags())
+                set.add(str);
+        }
+        return new ArrayList<>(set);
     }
 }

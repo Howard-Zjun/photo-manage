@@ -1,23 +1,30 @@
 package pers.howard.personalspace.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pers.howard.personalspace.model.PhotoPreviewItem;
 import pers.howard.personalspace.model.RemarkItem;
 import pers.howard.personalspace.model.ShareDetailItem;
-import pers.howard.personalspace.service.PersonalShareService;
+import pers.howard.personalspace.service.PersonalService;
 
 import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
 @RequestMapping("/personal")
-public class PersonalShareController {
+public class PersonalController {
 
     @Resource
-    PersonalShareService personalShareService;
+    PersonalService personalService;
 
     @GetMapping("/index")
-    public String toIndex() {
+    public String toIndex(@RequestParam("userId") String userId, Model model) {
+        List<PhotoPreviewItem> previewItems = personalService.previewItems(userId);
+        List<String> tags = personalService.previewTags(previewItems);
+        tags.add(0, "All");
+        model.addAttribute("previewItems", previewItems);
+        model.addAttribute("tags", tags);
         return "personal";
     }
 
@@ -35,7 +42,7 @@ public class PersonalShareController {
     @PostMapping("/retrieve")
     @ResponseBody
     public List<ShareDetailItem> retrieve(@RequestBody String userID, @RequestParam("page") int page) {
-        return personalShareService.retrieveAt(userID, page);
+        return personalService.retrieveAt(userID, page);
     }
 
     /**
@@ -44,7 +51,7 @@ public class PersonalShareController {
      */
     @PostMapping("/status/update")
     public void updateStatus(@RequestBody String shareID, @RequestParam("status") boolean status) {
-        personalShareService.updateStatusAt(shareID, status);
+        personalService.updateStatusAt(shareID, status);
     }
 
     /**
@@ -53,7 +60,7 @@ public class PersonalShareController {
      */
     @DeleteMapping("/delete")
     public void delete(@RequestBody String shareID) {
-        personalShareService.deleteAt(shareID);
+        personalService.deleteAt(shareID);
     }
 
     /**
@@ -62,7 +69,7 @@ public class PersonalShareController {
      */
     @PostMapping("/remark")
     public void remark(@RequestBody RemarkItem remarkItem) {
-        personalShareService.remarkWith(remarkItem);
+        personalService.remarkWith(remarkItem);
     }
 
     /**
@@ -71,6 +78,6 @@ public class PersonalShareController {
      */
     @PostMapping("/like")
     public void like(@RequestBody String shareID) {
-        personalShareService.likeAt(shareID);
+        personalService.likeAt(shareID);
     }
 }
