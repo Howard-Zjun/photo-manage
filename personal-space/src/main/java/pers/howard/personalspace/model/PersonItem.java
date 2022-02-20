@@ -6,7 +6,7 @@ import java.util.Date;
  * 个人资料模型
  */
 public class PersonItem {
-    private String userID;// 唯一码
+    private String userId;// 唯一码
     private String name;
     private boolean sex;
     private String address;
@@ -15,8 +15,8 @@ public class PersonItem {
     private String email;
     private String introduction;
 
-    public PersonItem(String userID, String name, boolean sex, String address, Date birth, String phone, String email, String introduction) {
-        this.userID = userID;
+    public PersonItem(String userId, String name, boolean sex, String address, Date birth, String phone, String email, String introduction) {
+        this.userId = userId;
         this.name = name;
         this.sex = sex;
         this.address = address;
@@ -26,12 +26,12 @@ public class PersonItem {
         this.introduction = introduction;
     }
 
-    public String getUserID() {
-        return userID;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserID(String userID) {
-        this.userID = userID;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {

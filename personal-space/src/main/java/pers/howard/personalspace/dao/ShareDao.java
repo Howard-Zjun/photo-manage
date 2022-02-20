@@ -39,7 +39,7 @@ public interface ShareDao {
     /**
      * 文章点赞增长
      */
-    void increaseLikeAt(String shareId);
+    void increaseLikeAt(@Param("shareId") int shareId);
 
     /**
      * 检索个人文章预览
@@ -48,6 +48,4 @@ public interface ShareDao {
 
     boolean retrieveStatusAt(@Param("shareID") String shareID);
     void deleteAt(@Param("shareID") String shareID);
-    void remarkWith(RemarkItem remarkItem);
-
 }

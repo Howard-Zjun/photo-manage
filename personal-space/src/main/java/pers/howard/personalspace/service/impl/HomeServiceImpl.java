@@ -2,9 +2,7 @@ package pers.howard.personalspace.service.impl;
 
 import org.springframework.stereotype.Service;
 import pers.howard.personalspace.dao.ShareDao;
-import pers.howard.personalspace.model.LogRemarkItem;
-import pers.howard.personalspace.model.RemarkItem;
-import pers.howard.personalspace.model.ShareDetailItem;
+import pers.howard.personalspace.model.LikeItem;
 import pers.howard.personalspace.model.SharePreviewItem;
 import pers.howard.personalspace.service.HomeService;
 
@@ -25,27 +23,8 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public ShareDetailItem detailItems(String shareId) {
-        return shareDao.retrieveDetailAt(shareId);
-    }
-
-    @Override
-    public List<RemarkItem> remarkItems(String shareId) {
-        return shareDao.retrieveRemarkAt(shareId);
-    }
-
-    @Override
-    public String personalItemName(String shareId) {
-        return shareDao.retrievePersonItemName(shareId);
-    }
-
-    @Override
-    public void insertRemarkItem(LogRemarkItem logRemarkItem) {
-        shareDao.insertRemarkItem(logRemarkItem);
-    }
-
-    @Override
-    public void likeAt(String shareId) {
-        shareDao.increaseLikeAt(shareId);
+    public void likeAt(LikeItem likeItem) {
+        Integer value = Integer.valueOf(likeItem.getShareId());
+        shareDao.increaseLikeAt(value);
     }
 }

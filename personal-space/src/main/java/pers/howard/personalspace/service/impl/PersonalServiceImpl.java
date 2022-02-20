@@ -3,7 +3,6 @@ package pers.howard.personalspace.service.impl;
 import org.springframework.stereotype.Service;
 import pers.howard.personalspace.dao.ShareDao;
 import pers.howard.personalspace.model.PhotoPreviewItem;
-import pers.howard.personalspace.model.RemarkItem;
 import pers.howard.personalspace.model.ShareDetailItem;
 import pers.howard.personalspace.service.PersonalService;
 
@@ -36,16 +35,6 @@ public class PersonalServiceImpl implements PersonalService {
     @Override
     public void deleteAt(String shareID) {
         shareDao.deleteAt(shareID);
-    }
-
-    @Override
-    public void remarkWith(RemarkItem remarkItem) {
-        shareDao.remarkWith(remarkItem);
-    }
-
-    @Override
-    public void likeAt(String shareId) {
-        shareDao.increaseLikeAt(shareId);
     }
 
     @Override

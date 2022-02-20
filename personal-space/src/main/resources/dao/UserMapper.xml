@@ -22,4 +22,21 @@
             user_id = #{userID}
         </where>
     </update>
+
+    <select id="retrievePasswordAtEmail" resultType="java.lang.String">
+        select password from user where email = #{email}
+    </select>
+
+    <select id="retrieveRowAtEmail" resultType="int">
+        select count(*) from user where email = #{email}
+    </select>
+
+    <insert id="insertUser">
+        insert into user (name, password, email)
+        values (#{item.name}, #{item.password}, #{item.email})
+    </insert>
+
+    <select id="retrieveUserIdAtEmail" resultType="java.lang.Integer">
+        select user_id from user where email = #{email}
+    </select>
 </mapper>

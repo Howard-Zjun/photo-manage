@@ -30,7 +30,7 @@ public class PhotoPreviewItem {
         String ret = "";
         for (String temp : tags.split(";"))
             ret += ",\"" + temp + "\"";
-        return ret.substring(1);
+        return "\"All\"" + ret;
     }
 
     public void setTags(String tags) {

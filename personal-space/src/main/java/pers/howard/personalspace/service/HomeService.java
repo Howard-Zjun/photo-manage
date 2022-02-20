@@ -1,17 +1,16 @@
 package pers.howard.personalspace.service;
 
-import pers.howard.personalspace.model.LogRemarkItem;
-import pers.howard.personalspace.model.RemarkItem;
-import pers.howard.personalspace.model.ShareDetailItem;
+import pers.howard.personalspace.model.LikeItem;
 import pers.howard.personalspace.model.SharePreviewItem;
 
 import java.util.List;
 
 public interface HomeService {
     List<SharePreviewItem> previewItems();
-    ShareDetailItem detailItems(String shareId);
-    List<RemarkItem> remarkItems(String shareId);
-    String personalItemName(String shareId);
-    void insertRemarkItem(LogRemarkItem logRemarkItem);
-    void likeAt(String shareId);
+
+    /**
+     * 点赞
+     * @param likeItem
+     */
+    void likeAt(LikeItem likeItem);
 }

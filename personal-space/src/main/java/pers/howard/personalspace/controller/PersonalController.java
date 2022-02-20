@@ -1,21 +1,20 @@
 package pers.howard.personalspace.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pers.howard.personalspace.model.PhotoPreviewItem;
-import pers.howard.personalspace.model.RemarkItem;
 import pers.howard.personalspace.model.ShareDetailItem;
 import pers.howard.personalspace.service.PersonalService;
 
-import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
 @RequestMapping("/personal")
 public class PersonalController {
 
-    @Resource
+    @Autowired
     PersonalService personalService;
 
     @GetMapping("/index")
@@ -26,11 +25,6 @@ public class PersonalController {
         model.addAttribute("previewItems", previewItems);
         model.addAttribute("tags", tags);
         return "personal";
-    }
-
-    @GetMapping("/detail")
-    public String toDetail() {
-        return "personal-detail";
     }
 
     /**
@@ -61,23 +55,5 @@ public class PersonalController {
     @DeleteMapping("/delete")
     public void delete(@RequestBody String shareID) {
         personalService.deleteAt(shareID);
-    }
-
-    /**
-     * 评论
-     * @param remarkItem 评论模型
-     */
-    @PostMapping("/remark")
-    public void remark(@RequestBody RemarkItem remarkItem) {
-        personalService.remarkWith(remarkItem);
-    }
-
-    /**
-     * 点赞
-     * @param shareID 动态ID
-     */
-    @PostMapping("/like")
-    public void like(@RequestBody String shareID) {
-        personalService.likeAt(shareID);
     }
 }
