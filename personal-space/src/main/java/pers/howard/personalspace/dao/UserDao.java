@@ -29,4 +29,11 @@ public interface UserDao {
      * 检索用户ID
      */
     Integer retrieveUserIdAtEmail(@Param("email") String email);
+
+    /**
+     * 根据id查询用户名
+     * @param userId
+     * @return
+     */
+    String retrieveNameAtUserId(@Param("userId") String userId);
 }

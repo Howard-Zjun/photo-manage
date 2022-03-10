@@ -28,12 +28,13 @@ public class ResourceController {
 
     @PostMapping("/upload")
     @ResponseBody
-    public void saveImage(@RequestParam("image") MultipartFile file) {
+    public String saveImage(@RequestParam("image") MultipartFile file) {
         try {
             InputStream inputStream = file.getInputStream();
-            resourceService.saveImage(inputStream, file.getOriginalFilename(), file.getContentType());
+            return resourceService.saveImage(inputStream, file.getOriginalFilename(), file.getContentType());
         } catch (IOException e) {
             log.error(e.getMessage());
         }
+        return null;
     }
 }

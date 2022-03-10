@@ -52,4 +52,18 @@
     <select id="retrievePersonalPreviewAt" resultType="pers.howard.personalspace.model.PhotoPreviewItem">
         select * from share a, share_photo_set b where a.share_id = b.share_id group by photo_path
     </select>
+
+    <insert id="insertShareItem" parameterType="pers.howard.personalspace.model.ShareItem"
+            useGeneratedKeys="true"
+            keyProperty="shareId">
+        insert into share (user_id, title, send_date, detail, tags, `show`)
+        values (#{item.userId}, #{item.title}, #{item.sendDate}, #{item.detail}, #{item.tags}, #{item.show})
+    </insert>
+
+    <insert id="insertPhotoItem" parameterType="pers.howard.personalspace.model.PhotoItem"
+            useGeneratedKeys="true"
+            keyProperty="photoId">
+        insert into share_photo_set (share_id, photo_path)
+        values (#{item.shareId}, #{item.photoPath})
+    </insert>
 </mapper>

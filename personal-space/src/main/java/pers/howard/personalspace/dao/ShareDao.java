@@ -46,6 +46,18 @@ public interface ShareDao {
      */
     List<PhotoPreviewItem> retrievePersonalPreviewAt(@Param("userId") String userId);
 
+    /**
+     * 插入新分享动态
+     * @param shareItem
+     */
+    void insertShareItem(@Param("item") ShareItem shareItem);
+
+    /**
+     * 插入照片连接
+     * @param photoItem
+     */
+    void insertPhotoItem(@Param("item") PhotoItem photoItem);
+
     boolean retrieveStatusAt(@Param("shareID") String shareID);
     void deleteAt(@Param("shareID") String shareID);
 }

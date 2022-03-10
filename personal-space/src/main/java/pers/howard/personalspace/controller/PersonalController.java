@@ -1,13 +1,17 @@
 package pers.howard.personalspace.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import pers.howard.personalspace.config.ToolKit;
 import pers.howard.personalspace.model.PhotoPreviewItem;
 import pers.howard.personalspace.model.ShareDetailItem;
 import pers.howard.personalspace.service.PersonalService;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -17,8 +21,16 @@ public class PersonalController {
     @Autowired
     PersonalService personalService;
 
+    @Autowired
+    ToolKit toolKit;
+
+    @Value("${local.cookie.userId-name}")
+    private String userIdName;
+
     @GetMapping("/index")
-    public String toIndex(@RequestParam("userId") String userId, Model model) {
+    public String toIndex(Model model, HttpServletRequest request) {
+        Cookie cookie = toolKit.getSingleCookieAtName(request, userIdName);
+        String userId = cookie.getValue();
         List<PhotoPreviewItem> previewItems = personalService.previewItems(userId);
         List<String> tags = personalService.previewTags(previewItems);
         tags.add(0, "All");

@@ -19,7 +19,7 @@ public class ResourceServiceImpl implements ResourceService {
     }
 
     @Override
-    public void saveImage(InputStream inputStream, String filename, String contentType) {
-        photoServiceImpl.saveFile(inputStream, filename, contentType);
+    public String saveImage(InputStream inputStream, String filename, String contentType) {
+        return photoServiceImpl.saveFile(inputStream, filename, contentType);
     }
 }

@@ -39,4 +39,8 @@
     <select id="retrieveUserIdAtEmail" resultType="java.lang.Integer">
         select user_id from user where email = #{email}
     </select>
+
+    <select id="retrieveNameAtUserId" parameterType="java.lang.String" resultType="java.lang.String">
+        select name from user where user_id = #{userId}
+    </select>
 </mapper>

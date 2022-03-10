@@ -12,5 +12,5 @@ public interface ResourceService {
      */
     BufferedImage getImage(String id);
 
-    void saveImage(InputStream inputStream, String filename, String contentType);
+    String saveImage(InputStream inputStream, String filename, String contentType);
 }

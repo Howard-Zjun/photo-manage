@@ -1,6 +1,7 @@
 package pers.howard.personalspace.interceptor;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import pers.howard.personalspace.service.RedisService;
@@ -15,16 +16,24 @@ public class TokenInterceptor implements HandlerInterceptor {
     @Autowired
     RedisService redisService;
 
-    private final String[] paramNames = {"userId", "token"};
+    @Value("${local.cookie.token-name}")
+    private String tokenName;
+
+    @Value("${local.cookie.userId-name}")
+    private String userIdName;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         Cookie[] cookies = request.getCookies();
         String userId = null, clientValue = null;
+        if (cookies == null) {
+            response.sendRedirect("/login/index");
+            return false;
+        }
         for (Cookie temp : cookies) {
-            if (temp.getName().equals(paramNames[0]))
+            if (temp.getName().equals(userIdName))
                 userId = temp.getValue();
-            else if (temp.getName().equals(paramNames[1]))
+            else if (temp.getName().equals(tokenName))
                 clientValue = temp.getValue();
         }
         // 没有token
