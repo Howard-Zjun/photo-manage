@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.*;
 import pers.howard.personalspace.config.ToolKit;
 import pers.howard.personalspace.model.PhotoPreviewItem;
 import pers.howard.personalspace.model.ShareDetailItem;
+import pers.howard.personalspace.model.TagItem;
+import pers.howard.personalspace.model.UpdateShareTagItem;
 import pers.howard.personalspace.service.PersonalService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/personal")
@@ -67,5 +71,27 @@ public class PersonalController {
     @DeleteMapping("/delete")
     public void delete(@RequestBody String shareID) {
         personalService.deleteAt(shareID);
+    }
+
+    @GetMapping("/tag")
+    @ResponseBody
+    public Map retrieveShareTag(@RequestParam("shareId") String shareId, @RequestParam("userId") String userId) {
+        String idGroup = personalService.IdGroupAtShareId(shareId);
+        HashMap<String, Object> map = new HashMap<>();
+        String[] tagIds = null;
+        if (idGroup != null) {
+            tagIds = idGroup.split(";");
+        }
+        TagItem[] useTag = personalService.idInIdsAtUserId(tagIds);
+        TagItem[] noUseTag = personalService.idNotInIdsAtUserId(tagIds, userId);
+        map.put("useTag", useTag);
+        map.put("noUseTag", noUseTag);
+        return map;
+    }
+
+    @PostMapping("/confirm")
+    @ResponseBody
+    public boolean updateTagAtShare(@RequestBody UpdateShareTagItem updateShareTagItem) {
+        return true;
     }
 }

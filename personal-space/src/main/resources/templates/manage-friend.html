@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+	<meta name="sogou_site_verification" content="gI1bINaJcL"/>
+	<meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a"/>
+	<meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="apple-touch-fullscreen" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE;chrome=1">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="keywords" content="XXX -  让您多懂XXX,XXX，让您多懂XXX的常识，在这里，您会看到汽车相关的知识，汽车日常保养，汽车多用小知识，汽车简单维修以及清洗保养等等。">
+	<meta name="description" content="XXX -  让您多懂XXX,XXX，让您多懂XXX的常识，在这里，您会看到汽车相关的知识，汽车日常保养，汽车多用小知识，汽车简单维修以及清洗保养等等。。">
+	<meta name="author" content="AUI, a-ui.com">
+	<meta name="baidu-site-verification" content="ZVPGgtpUfW"/>
+	<title>内容管理-- XXX -  让您多懂XXX</title>
+	<link type="image/png" rel="shortcut icon" href="../static/images/favicon.png" th:href="@{/images/favicon.png}">
+	<link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+	<link type="text/css" rel="stylesheet" href="../static/css/core.css" th:href="@{/css/core.css}">
+	<link type="text/css" rel="stylesheet" href="../static/css/icon.css" th:href="@{/css/icon.css}">
+	<link type="text/css" rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+</head>
+<body>
+<div id="app">
+<!-- head YDC begin -->
+	<header class="ydc-header">
+		<div class="ydc-entered">
+			<div class="ydc-header-content ydc-flex">
+				<div class="ydc-column">
+					<a href="index.html" class="ydc-column-ydc-logo">
+						<img src="admin/images/icon/ydc-logo.png" title="" about="" alt="">
+					</a>
+				</div>
+				<div class="ydc-column">
+					<div class="ydc-column-user">
+						<div class="ydc-user-photo">
+							<a href="javascript:;">
+								<img src="../static/images/photo.png" title="" about="" alt="" th:src="@{/images/photo.png}">
+							</a>
+						</div>
+						<div class="ydc-user-info">
+							<div class="ydc-user-info-name">
+								<a href="javascript:;" th:text="${name}">XXX</a>
+							</div>
+							<div class="ydc-user-info-func ydc-flex">
+								<span class="ydc-mal"></span>
+								<a href="javascript:;">退出</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+<!-- head YDC end -->
+
+<!-- content YDC begin -->
+	<section>
+		<div class="ydc-content-slide ydc-body">
+			<div class="ydc-flex">
+				<!-- left begin -->
+				<div class="ydc-column ydc-column-2">
+					<div class="ydc-menu">
+						<ul>
+							<li class="ydc-menu-item">
+								<a href="index.html" class="" th:href="@{/index}">
+									<i class="ydc-icon ydc-icon-home fl"></i>
+									首页
+								</a>
+							</li>
+							<li class="ydc-menu-item">
+								<a href="manage-push.html" class="" th:href="@{/manage/index}">
+									<i class="ydc-icon ydc-icon-find fl"></i>
+									发布
+								</a>
+							</li>
+							<li class="ydc-menu-item">
+                                    <span class="ydc-menu-sub-title">
+                                        <i class="ydc-icon ydc-icon-file fl"></i>
+                                        管理
+                                    </span>
+								<ul>
+									<li>
+										<a href="#">内容</a>
+									</li>
+									<li>
+										<a href="#" class="active">好友</a>
+									</li>
+									<li>
+										<a href="manage-tag.html" th:href="@{/manage/tag/index}">标签</a>
+									</li>
+								</ul>
+							</li>
+							<li class="ydc-menu-item">
+                                    <span class="ydc-menu-sub-title">
+                                        <i class="ydc-icon ydc-icon-set fl"></i>
+                                        设置
+
+                                    </span>
+								<ul>
+									<li>
+										<a href="info.html" th:href="@{/manage/info/index}">账号信息</a>
+									</li>
+								</ul>
+							</li>
+							<li class="ydc-menu-item">
+                                    <span class="ydc-menu-sub-title">
+                                        <i class="ydc-icon ydc-icon-customer fl"></i>
+                                        客服
+
+                                    </span>
+								<ul>
+									<li>
+										<a href="#">在线咨询</a>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!-- left end -->
+				<!-- right begin -->
+				<div class="ydc-column ydc-column-8">
+					<div class="ydc-release-content">
+						<div class="ydc-tabPanel ydc-tabPanel-release">
+							<div class="ydc-release-tab-head">
+								<ul>
+									<li class="hit">好友管理</li>
+								</ul>
+							</div>
+							<div class="ydc-panes">
+								<div class="ydc-pane" style="display:block;">
+									<div class="clearfix">
+										<div class="fl ydc-group-sel">
+											<select>
+												<option>全部类型</option>
+												<option>文章</option>
+												<option>图集</option>
+												<option>视频</option>
+											</select>
+										</div>
+										<div class="fl ydc-group-sel">
+											<select>
+												<option>全部状态</option>
+												<option>草稿</option>
+												<option>未通过</option>
+												<option>已发布</option>
+												<option>已下线</option>
+												<option>待发布</option>
+											</select>
+										</div>
+										<div class="fl ydc-group-input">
+											<input type="text" placeholder="请输入关键词进行搜索">
+											<button class="ydc-group-button">搜 索</button>
+										</div>
+									</div>
+									<div class="ydc-group-altogether">共<span th:text="${#lists.size(friends)}">0</span>个好友</div>
+									<div class="ydc-group-table" th:each="friend:${friends}">
+										<div class="ydc-group-table-item">
+											<div class="ydc-group-table-item-img">
+												<img src="../static/images/photo.png" alt="" th:src="@{/images/photo.png}">
+											</div>
+											<div class="ydc-actions">
+												<div>
+													<button class="ydc-actions-trigger" th:@click="|deleteFriend(${friend.userId})|">删除</button>
+												</div>
+											</div>
+											<div class="ydc-group-table-item-text">
+												<span>
+													<a href="#" th:text="${friend.name}">用户名</a>
+												</span>
+												<span class="ydc-group-table-item-tag" th:text="${friend.sex==true}?'男':'女'">男</span>
+											</div>
+											<div class="ydc-group-table-item-info">
+												<span th:text="${friend.introduce}">个人介绍</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<el-pagination
+								background
+								layout="prev, pager, next"
+								:total="10">
+						</el-pagination>
+					</div>
+				</div>
+				<!-- right end -->
+			</div>
+		</div>
+
+	</section>
+<!-- content YDC end -->
+
+	<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+	<script type="text/javascript" src="../static/js/jquery-2.1.4.min.js" th:src="@{/js/jquery-2.1.4.min.js}"></script>
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+	<script type="text/javascript" src="../static/js/local.js" th:src="@{/js/local.js}"></script>
+	<script>
+		let app = new Vue({
+			el: "#app",
+			data: {
+
+			},
+			methods: {
+				deleteFriend: function (friendId) {
+					let that = this;
+					$.ajax({
+						url: "/manage/friend/delete",
+						type: "post",
+						contentType: "application/json",
+						data: JSON.stringify({
+							"userId": friendId
+						}),
+						success: function (result) {
+							that.$message({
+								message: result.describe,
+								type: 'success'
+							});
+							window.location.reload();
+						}
+					});
+				}
+			}
+		})
+	</script>
+	<script type="text/javascript">
+	    var slideIndex = 0;
+	    showSlides();
+
+	    function showSlides() {
+	        var i;
+	        var slides = document.getElementsByClassName("mySlides");
+	        for (i = 0; i < slides.length; i++) {
+	            slides[i].style.display = "none";
+	        }
+	        slideIndex++;
+	        if (slideIndex> slides.length) {slideIndex = 1}
+	        slides[slideIndex-1].style.display = "block";
+	        setTimeout(showSlides, 3000); // 滚动时间
+	    }
+	</script>
+
+	<script type="text/javascript">
+	    $(function(){
+	        $('.ydc-tabPanel ul li').click(function(){
+	            $(this).addClass('hit').siblings().removeClass('hit');
+	            $('.ydc-panes>div:eq('+$(this).index()+')').show().siblings().hide();
+	        })
+	    })
+	</script>
+</div>
+</body>
+</html>

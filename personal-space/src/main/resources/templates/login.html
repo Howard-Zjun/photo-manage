@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+    <!-- metatags-->
+    <meta content="width=device-width, initial-scale=1" name="viewport">
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <meta content="" name="keywords"/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link type="image/png" rel="shortcut icon" href="../static/images/favicon.png" th:href="@{/images/favicon.png}">
+    <!-- Meta tag Keywords -->
+    <!-- Custom-Style-Sheet -->
+    <link href="../static/css/popuo-box.css" media="all" rel="stylesheet" type="text/css" th:href="@{/css/popuo-box.css}"/>
+    <link href="../static/css/style.css" media="all" rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <!--style_sheet-->
+    <link href="../static/css/flexslider.css" media="screen" property="" rel="stylesheet" type="text/css" th:href="@{/css/flexslider.css}"/>
+    <link href="../static/css/font-awesome.css" rel="stylesheet" th:href="@{/css/font-awesome.css}">
+    <!-- Font-Awesome_Icons-CSS -->
+    <!--//Custom-Style-Sheet -->
+</head>
+<body>
+<div class="w3l-head">
+    <h1>student portal form</h1>
+</div>
+<div class="w3l-main">
+    <div class="w3l-left-side">
+
+        <div class="flexslider">
+            <ul class="slides">
+                <li>
+                    <img alt="image" src="../static/images/g5.jpg" th:src="@{/images/g5.jpg}"/>
+                </li>
+                <li>
+                    <img alt="image" src="../static/images/g2.jpg" th:src="@{/images/g2.jpg}"/>
+                </li>
+                <li>
+                    <img alt="image" src="../static/images/g3.jpg" th:src="@{/images/g3.jpg}"/>
+                </li>
+                <li>
+                    <img alt="image" src="../static/images/g4.jpg" th:src="@{/images/g4.jpg}"/>
+                </li>
+                <li>
+                    <img alt="image" src="../static/images/g1.jpg" th:src="@{/images/g1.jpg}"/>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="w3l-rigt-side">
+        <form action="#" method="post">
+            <div class="w3l-signin">
+                <a class="w3_play_icon1" href="#small-dialog1"> sign in</a>
+            </div>
+            <div class="w3l-signup">
+                <a class="w3_play_icon1" href="#small-dialog2"> sign up</a>
+            </div>
+            <div class="clear"></div>
+        </form>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<!--sign in form -->
+<div class="mfp-hide" id="small-dialog1">
+    <div class="wthree-container">
+        <div class="wthree-form">
+            <div class="agileits-2">
+                <h2>sign in</h2>
+            </div>
+            <form action="/login/check" method="post" th:action="@{/login/check}" id="loginVue">
+                <div class="w3-user">
+                    <span><i aria-hidden="true" class="fa fa-user-o"></i></span>
+                    <input name="email" placeholder="email" required="" type="text" v-model="email">
+                </div>
+                <div class="clear"></div>
+                <div class="w3-psw">
+                    <span><i aria-hidden="true" class="fa fa-key"></i></span>
+                    <input name="password" placeholder="Password" required="" type="password" v-model="password">
+                </div>
+                <div class="clear">
+                    <p style="color: red" v-show="helpMessage != ''">{{helpMessage}}</p>
+                </div>
+                <div class="w3l-check">
+                    <input class="checkbox" type="checkbox">
+                    <span><a href="#">forgot password ?</a></span>
+                </div>
+                <div class="clear"></div>
+                <div class="signin">
+                    <input type="button" value="sign in" @click="login()">
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--sign in form -->
+<!-- for register popup -->
+
+<!--sign up form -->
+<div class="mfp-hide" id="small-dialog2">
+    <div class="wthree-container">
+        <div class="wthree-form bg">
+            <div class="agileits-2">
+                <h2>sign up here</h2>
+            </div>
+            <form action="/login/register" method="post" th:action="@{/login/register}" id="registerVue">
+                <div class="w3-user">
+                    <span><i aria-hidden="true" class="fa fa-user-o"></i></span>
+                    <input name="name" placeholder="Username" required="" type="text" v-model="name">
+                </div>
+                <div class="clear"></div>
+                <div class="w3-email">
+                    <span><i aria-hidden="true" class="fa fa-envelope"></i></span>
+                    <input name="email" placeholder="Example@mail" required="" type="email" v-model="email"/>
+                </div>
+                <div class="clear"></div>
+                <div class="w3-psw">
+                    <span><i aria-hidden="true" class="fa fa-key"></i></span>
+                    <input name="password" placeholder="Password" required="" type="password">
+                </div>
+                <div class="w3-cpsw">
+                    <span><i aria-hidden="true" class="fa fa-key"></i></span>
+                    <input name="password" placeholder="confirm-Password" required="" type="password"
+                           v-model="password">
+                </div>
+                <div class="clear">
+                    <p style="color: red" v-show="helpMessage != ''">{{helpMessage}}</p>
+                </div>
+                <div class="w3l-check">
+                    <input class="checkbox" type="checkbox">
+                    <span><a href="#">i agree terms and conditions</a></span>
+                </div>
+                <div class="clear"></div>
+                <div class="signin">
+                    <input type="button" value="sign up" @click="register()">
+                </div>
+                <div class="clear"></div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--sign in form -->
+<!-- //for register popup -->
+<footer>Copyright &copy; 2018.Company name All rights reserved.<a href="http://www.cssmoban.com/" target="_blank">&#x7F51;&#x9875;&#x6A21;&#x677F;</a>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="../static/js/jquery-2.1.4.min.js" type="text/javascript" th:src="@{/js/jquery-2.1.4.min.js}"></script>
+<!-- pop-up-box-js-file -->
+<script src="../static/js/jquery.magnific-popup.js" type="text/javascript"
+        th:src="@{/js/jquery.magnific-popup.js}"></script>
+<!--//pop-up-box-js-file -->
+<script>
+    $(document).ready(function () {
+        $('.w3_play_icon,.w3_play_icon1,.w3_play_icon2').magnificPopup({
+            type: 'inline',
+            fixedContentPos: false,
+            fixedBgPos: true,
+            overflowY: 'auto',
+            closeBtnInside: true,
+            preloader: false,
+            midClick: true,
+            removalDelay: 300,
+            mainClass: 'my-mfp-zoom-in'
+        });
+
+    });
+</script>
+<script defer src="../static/js/jquery.flexslider.js" th:src="@{/js/jquery.flexslider.js}"></script>
+<script type="text/javascript">
+    $(window).load(function () {
+        $('.flexslider').flexslider({
+            animation: "slide",
+            start: function (slider) {
+                $('body').removeClass('loading');
+            }
+        });
+    });
+</script>
+<script>
+    var loginJS = new Vue({
+        el: "#loginVue",
+        data: {
+            email: "",
+            password: "",
+            helpMessage: ""
+        },
+        methods: {
+            login: function () {
+                var json = JSON.stringify({
+                    "email": this.email,
+                    "password": this.password
+                });
+                console.log(json);
+                $.ajax({
+                    url: "/login/check",
+                    type: "post",
+                    contentType: "application/json",
+                    data: json,
+                    success: function (ret) {
+                        if (ret.path != null) {
+                            window.location.href = ret.path;
+                        } else if (ret.error != null) {
+                            loginJS.helpMessage = ret.error
+                        }
+                    }
+                })
+            }
+        }
+    })
+    var registerJS = new Vue({
+        el: "#registerVue",
+        data: {
+            name: "",
+            email: "",
+            password: "",
+            helpMessage: ""
+        },
+        methods: {
+            register: function () {
+                var json = JSON.stringify({
+                    "name": this.name,
+                    "email": this.email,
+                    "password": this.password
+                });
+                console.log(json);
+                $.ajax({
+                    url: "/login/register",
+                    type: "post",
+                    contentType: "application/json",
+                    data: json,
+                    success: function (ret) {
+                        if (ret.path != null) {
+                            window.location.href = ret.path;
+                        } else if (ret.message != null) {
+                            registerJS.helpMessage = ret.message;
+                        }
+
+                    }
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>

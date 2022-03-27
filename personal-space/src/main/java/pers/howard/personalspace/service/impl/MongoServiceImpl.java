@@ -51,6 +51,8 @@ public class MongoServiceImpl implements MongoService {
     public BufferedImage getImage(String id) {
         Query query = new Query(Criteria.where("_id").is(id));
         GridFSFile gridFSFile = gridFsTemplate.findOne(query);
+        if (gridFSFile == null)
+            return null;
         GridFSDownloadStream in = gridFSBucket.openDownloadStream(gridFSFile.getId());
         GridFsResource resource = new GridFsResource(gridFSFile, in);
         try {

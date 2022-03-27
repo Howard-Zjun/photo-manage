@@ -2,26 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="pers.howard.personalspace.dao.UserDao">
 
-    <select id="retrieveBasic" resultType="pers.howard.personalspace.model.PersonItem">
-        select *
-        from user where user_id = #{userID};
+    <select id="userAtUserId" resultType="pers.howard.personalspace.model.PersonItem">
+        select * from user where user_id = #{userId};
     </select>
-
-    <update id="updateBasic" parameterType="pers.howard.personalspace.model.PersonItem">
-        update user
-        <set>
-            <if test="name != null">name = #{name},</if>
-            <if test="sex != null">sex = #{sex},</if>
-            <if test="address != null">address = #{address},</if>
-            <if test="birth != null">birth = #{birth},</if>
-            <if test="phone != null">phone = #{phone},</if>
-            <if test="email != null">email = #{email},</if>
-            <if test="introduction != null">introduction = #{introduction}</if>
-        </set>
-        <where>
-            user_id = #{userID}
-        </where>
-    </update>
 
     <select id="retrievePasswordAtEmail" resultType="java.lang.String">
         select password from user where email = #{email}
@@ -43,4 +26,72 @@
     <select id="retrieveNameAtUserId" parameterType="java.lang.String" resultType="java.lang.String">
         select name from user where user_id = #{userId}
     </select>
+
+    <select id="friendAtUserId" resultType="pers.howard.personalspace.model.PersonItem">
+        select user_id, name, sex, introduce from user where
+        user_id in (select friend_id from friend_relationship fr where fr.user_id = #{userId})
+        limit #{offset}, #{size}
+    </select>
+
+    <update id="updateAtUserId" parameterType="pers.howard.personalspace.model.PersonItem">
+        update user
+        <set>
+            <if test="name != null">name = #{name},</if>
+            <if test="password != null">password = #{password}</if>
+            <if test="sex != null">sex = #{sex},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="birth != null">birth = #{birth},</if>
+            <if test="phone != null">phone = #{phone},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="introduce != null">introduce = #{introduce},</if>
+            <if test="realName != null">real_name = #{realName}</if>
+        </set>
+        <where>
+            user_id = #{userId}
+        </where>
+    </update>
+
+    <select id="friendCountAtUserId" resultType="java.lang.Integer">
+        select count(*) from friend_relationship where user_id = #{userId}
+    </select>
+
+    <delete id="deleteFriendAtUserIdAndFriendId">
+        delete from friend_relationship where user_id = #{userId} and friend_id = #{friendId}
+    </delete>
+
+    <select id="tagAtUserId" resultType="pers.howard.personalspace.model.TagItem">
+        select * from tag where user_id = #{userId}
+    </select>
+
+    <select id="friendInTagId" resultType="pers.howard.personalspace.model.PersonItem">
+        select user_id, name from user where user_id
+            in (select friend_id from friend_relationship where relationship_id
+                in (
+                select friend_relationship_id from tag_relationship where tag_id = #{tagId}
+                )
+            )
+    </select>
+
+    <select id="friendNotInTagId" resultType="pers.howard.personalspace.model.PersonItem">
+        select user_id, name from user where user_id
+            in (select friend_id from friend_relationship where user_id = #{userId} and relationship_id
+                not in (
+                    select friend_relationship_id from tag_relationship where tag_id = #{tagId}
+                )
+            )
+    </select>
+
+    <delete id="deleteTagRelationshipAtTagId">
+        delete from tag_relationship where tag_id = #{tagId}
+    </delete>
+    
+    <insert id="insertTagRelationship">
+        insert into tag_relationship (tag_id, friend_relationship_id)
+            select tag_id, relationship_id from tag, friend_relationship b
+            where b.user_id = #{userId} and friend_id in
+            <foreach collection="friendIdArray" item="friendId" open="(" close=")" separator=",">
+                #{friendId}
+            </foreach>
+            and tag_id = #{tagId}
+    </insert>
 </mapper>

@@ -19,10 +19,13 @@ public class HomeController {
     HomeService homeService;
 
     @GetMapping("/index")
-    public String toIndex(@RequestParam(value = "index", required = false, defaultValue = "0") int index, Model model) {
+    public String toIndex(@RequestParam(value = "index", required = false, defaultValue = "1") int index, Model model) {
         PageHelper.startPage(index, 3);
         List<SharePreviewItem> list = homeService.previewItems();
         PageInfo<SharePreviewItem> pageInfo = new PageInfo<>(list);
+        model.addAttribute("minIndex", 0);
+        model.addAttribute("index", index);
+        model.addAttribute("isHasNextPage", pageInfo.isHasNextPage());
         model.addAttribute("list", pageInfo.getList());
         return "index";
     }

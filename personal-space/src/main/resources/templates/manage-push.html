@@ -18,17 +18,12 @@
     <meta name="author" content="AUI, a-ui.com">
     <meta name="baidu-site-verification" content="ZVPGgtpUfW"/>
     <title>Blog Post - Photo Perfect</title>
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link type="image/png" rel="shortcut icon" href="../static/images/favicon.png" th:href="@{/images/favicon.png}">
     <link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
-    <link type="text/css" rel="stylesheet" href="../static/css/core.css"
-          th:href="@{/css/core.css}">
-    <link type="text/css" rel="stylesheet" href="../static/css/icon.css"
-          th:href="@{/css/icon.css}">
-    <link type="text/css" rel="stylesheet" href="../static/css/home.css"
-          th:href="@{/css/home.css}">
-    <link type="text/css" rel="stylesheet" href="../static/css/main.css"
-          th:href="@{/css/main.css}">
-    <script type="text/javascript" src="../static/js/vue.js" th:src="@{/js/vue.js}"></script>
+    <link type="text/css" rel="stylesheet" href="../static/css/core.css" th:href="@{/css/core.css}">
+    <link type="text/css" rel="stylesheet" href="../static/css/icon.css" th:href="@{/css/icon.css}">
+    <link type="text/css" rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
+    <script type="text/javascript" src="../static/vue/vue.js" th:src="@{/vue/vue.js}"></script>
     <script type="text/javascript" src="../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
     <script type="text/javascript" src="../static/js/jquery-2.1.4.min.js" th:src="@{/js/jquery-2.1.4.min.js}"></script>
     <script type="text/javascript">
@@ -60,93 +55,37 @@
 </head>
 <body>
 <!-- head YDC begin -->
-<!--<header class="ydc-header">-->
-<!--    <div class="ydc-entered">-->
-<!--        <div class="ydc-header-content ydc-flex">-->
-<!--            <div class="ydc-column">-->
-<!--                <a href="index.html" class="ydc-column-ydc-logo">-->
-<!--                    <img title="" about="" alt="" src="../static/images/ydc-logo.png" th:src="@{}">-->
-<!--                </a>-->
-<!--            </div>-->
-<!--            <div class="ydc-column">-->
-<!--                <div class="ydc-column-user">-->
-<!--                    <div class="ydc-user-photo">-->
-<!--                        <a href="javascript:;">-->
-<!--                            <img title="" about="" alt="" src="../static/images/photo.png"-->
-<!--                                 th:src="@{/images/photo.png}">-->
-<!--                        </a>-->
-<!--                    </div>-->
-<!--                    <div class="ydc-user-info">-->
-<!--                        <div class="ydc-user-info-name">-->
-<!--                            <a href="javascript:;">XXX</a>-->
-<!--                        </div>-->
-<!--                        <div class="ydc-user-info-func ydc-flex">-->
-<!--                            <span class="ydc-mal">-->
-<!--                                <i class="ydc-icon ydc-icon-mail fl"></i>-->
-<!--                                <em>12</em>-->
-<!--                            </span>-->
-<!--                            <a href="javascript:;">退出</a>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</header>-->
-<!-- head YDC end -->
-<header>
-    <div class="pp-header">
-        <nav class="navbar navbar-expand-lg navbar-light">
-            <div class="container">
-                <a href="index.html" th:href="@{/index}">
-                    <img src="../static/images/favicon.png" th:src="@{/images/favicon.png}">
+<header class="ydc-header">
+    <div class="ydc-entered">
+        <div class="ydc-header-content ydc-flex">
+            <div class="ydc-column">
+                <a href="index.html" class="ydc-column-ydc-logo">
+                    <img src="admin/images/icon/ydc-logo.png" title="" about="" alt="">
                 </a>
-                <a class="navbar-brand" href="index.html" th:href="@{/index}">Photo Manage</a>
-                <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
-                        class="navbar-toggler" data-target="#navbarNavAltMarkup" data-toggle="collapse"
-                        type="button"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html" th:href="@{/index}">首页</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="about.html">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="personal.html"
-                               th:href="@{/personal/index}">我的相册</a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="manage.html"
-                               th:href="@{/manage/index}">设置</a>
-                        </li>
-                    </ul>
-                </div>
-                <div class="ydc-column-user" style="margin-left: 20px;">
+            </div>
+            <div class="ydc-column">
+                <div class="ydc-column-user">
                     <div class="ydc-user-photo">
                         <a href="javascript:;">
-                            <img title="" about="" alt="" src="../static/images/photo.png"
-                                 th:src="@{/images/photo.png}">
+                            <img src="../static/images/photo.png" title="" about="" alt="" th:src="@{/images/photo.png}">
                         </a>
                     </div>
                     <div class="ydc-user-info">
                         <div class="ydc-user-info-name">
-                            <a href="javascript:;" th:text="name">XXX</a>
+                            <a href="javascript:;" th:text="${name}">XXX</a>
                         </div>
                         <div class="ydc-user-info-func ydc-flex">
-                                <span class="ydc-mal">
-                                    <i class="ydc-icon ydc-icon-mail fl"></i>
-                                    <em>12</em>
-                                </span>
+                            <span class="ydc-mal"></span>
                             <a href="javascript:;">退出</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </nav>
+        </div>
     </div>
 </header>
+<!-- head YDC end -->
+
 <!-- content YDC begin -->
 <section>
     <div class="ydc-content-slide ydc-body">
@@ -156,7 +95,13 @@
                 <div class="ydc-menu">
                     <ul>
                         <li class="ydc-menu-item">
-                            <a href="release.html" class="active">
+                            <a href="index.html" class="" th:href="@{/index}">
+                                <i class="ydc-icon ydc-icon-home fl"></i>
+                                首页
+                            </a>
+                        </li>
+                        <li class="ydc-menu-item">
+                            <a href="#" class="active">
                                 <i class="ydc-icon ydc-icon-find fl"></i>
                                 发布
                             </a>
@@ -168,31 +113,13 @@
                             </span>
                             <ul>
                                 <li>
-                                    <a href="content.html">内容管理</a>
+                                    <a href="#">内容</a>
                                 </li>
                                 <li>
-                                    <a href="related.html">内容同步</a>
+                                    <a href="manage-friend.html" th:href="@{/manage/friend/index}">好友</a>
                                 </li>
                                 <li>
-                                    <a href="asset.html">素材中心</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="ydc-menu-item">
-                            <span class="ydc-menu-sub-title">
-                                <i class="ydc-icon ydc-icon-record fl"></i>
-                                数据
-
-                            </span>
-                            <ul>
-                                <li>
-                                    <a href="subscribe.html">订阅数据</a>
-                                </li>
-                                <li>
-                                    <a href="content-data.html">内容数据</a>
-                                </li>
-                                <li>
-                                    <a href="index-starLevel.html">指数星级</a>
+                                    <a href="manage-tag.html" th:href="@{/manage/tag/index}">标签</a>
                                 </li>
                             </ul>
                         </li>
@@ -204,10 +131,7 @@
                             </span>
                             <ul>
                                 <li>
-                                    <a href="info.html">账号信息</a>
-                                </li>
-                                <li>
-                                    <a href="account.html">账号状态</a>
+                                    <a href="info.html" th:href="@{/manage/info/index}">账号信息</a>
                                 </li>
                             </ul>
                         </li>
@@ -234,7 +158,6 @@
                         <div class="ydc-release-tab-head">
                             <ul>
                                 <li class="hit">发布文章</li>
-                                <li>发布图集</li>
                             </ul>
                         </div>
                         <div class="ydc-panes">
@@ -254,6 +177,7 @@
                                     </div>
                                 </div>
                                 <div class="ydc-release-form-text">
+                                    <h4>文章内容</h4>
                                     <textarea id="textarea" type="text" style="width: 100%;" v-model="detail" placeholder="请输入内容"></textarea>
                                 </div>
                                 <div class="ydc-form-city">

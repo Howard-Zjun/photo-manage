@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pers.howard.personalspace.dao.ShareDao;
 import pers.howard.personalspace.model.PhotoPreviewItem;
 import pers.howard.personalspace.model.ShareDetailItem;
+import pers.howard.personalspace.model.TagItem;
 import pers.howard.personalspace.service.PersonalService;
 
 import javax.annotation.Resource;
@@ -50,5 +51,26 @@ public class PersonalServiceImpl implements PersonalService {
                 set.add(str);
         }
         return new ArrayList<>(set);
+    }
+
+    @Override
+    public String IdGroupAtShareId(String shareId) {
+        return shareDao.retrieveTagGroupAtShare(shareId);
+    }
+
+    @Override
+    public TagItem[] idInIdsAtUserId(String[] ids) {
+        if (ids == null) {
+            return new TagItem[0];
+        }
+        return shareDao.idInIds(ids);
+    }
+
+    @Override
+    public TagItem[] idNotInIdsAtUserId(String[] ids, String userId) {
+        if (ids == null) {
+            return shareDao.retrieveTagAtUser(userId);
+        }
+        return shareDao.idNotInIds(ids, userId);
     }
 }

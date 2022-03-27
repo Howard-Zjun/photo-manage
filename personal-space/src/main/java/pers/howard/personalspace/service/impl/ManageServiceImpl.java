@@ -4,9 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pers.howard.personalspace.dao.ShareDao;
 import pers.howard.personalspace.dao.UserDao;
-import pers.howard.personalspace.model.PhotoItem;
-import pers.howard.personalspace.model.PublishItem;
-import pers.howard.personalspace.model.ShareItem;
+import pers.howard.personalspace.model.*;
 import pers.howard.personalspace.service.ManageService;
 
 @Service
@@ -41,7 +39,57 @@ public class ManageServiceImpl implements ManageService {
     }
 
     @Override
-    public String getNameAt(String userId) {
+    public String nameAtUserId(String userId) {
         return userDao.retrieveNameAtUserId(userId);
+    }
+
+    @Override
+    public PersonItem[] friendAtUserId(String userId, int offset, int size) {
+        return userDao.friendAtUserId(userId, offset, size);
+    }
+
+    @Override
+    public int friendCountAtUserId(String userId) {
+        return userDao.friendCountAtUserId(userId);
+    }
+
+    @Override
+    public void deleteFriendAtUserIdAndFriendId(String userId, String friendId) {
+        userDao.deleteFriendAtUserIdAndFriendId(userId, friendId);
+    }
+
+    @Override
+    public TagItem[] tagAtUserId(String userId) {
+        return userDao.tagAtUserId(userId);
+    }
+
+    @Override
+    public PersonItem[] friendInTagId(String tagId) {
+        return userDao.friendInTagId(tagId);
+    }
+
+    @Override
+    public PersonItem[] friendNotInTagId(String tagId, String userId) {
+        return userDao.friendNotInTagId(tagId, userId);
+    }
+
+    @Override
+    public void deleteTagRelationshipAtTagId(String tagId) {
+        userDao.deleteTagRelationshipAtTagId(tagId);
+    }
+
+    @Override
+    public void insertTagRelationship(String tagId, String userId, String[] friendIdArray) {
+        userDao.insertTagRelationship(tagId, userId, friendIdArray);
+    }
+
+    @Override
+    public PersonItem userAtUserId(String userId) {
+        return userDao.userAtUserId(userId);
+    }
+
+    @Override
+    public void updateAtUserId(PersonItem personItem) {
+        userDao.updateAtUserId(personItem);
     }
 }

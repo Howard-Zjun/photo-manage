@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name='TTUNION_verify' content='b846c3c2b85efabc496d2a2b8399cd62'>
+    <meta name="sogou_site_verification" content="gI1bINaJcL"/>
+    <meta name="360-site-verification" content="37ae9186443cc6e270d8a52943cd3c5a"/>
+    <meta name="baidu_union_verify" content="99203948fbfbb64534dbe0f030cbe817">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE;chrome=1">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="keywords" content="XXX -  让您多懂XXX,XXX，让您多懂XXX的常识，在这里，您会看到汽车相关的知识，汽车日常保养，汽车多用小知识，汽车简单维修以及清洗保养等等。">
+    <meta name="description" content="XXX -  让您多懂XXX,XXX，让您多懂XXX的常识，在这里，您会看到汽车相关的知识，汽车日常保养，汽车多用小知识，汽车简单维修以及清洗保养等等。。">
+    <meta name="author" content="AUI, a-ui.com">
+    <meta name="baidu-site-verification" content="ZVPGgtpUfW"/>
+    <title>Blog Post - Photo Perfect</title>
+    <link type="image/png" rel="shortcut icon" href="../static/images/favicon.png" th:href="@{/images/favicon.png}">
+    <link href="iTunesArtwork@2x.png" sizes="114x114" rel="apple-touch-icon-precomposed">
+    <link type="text/css" rel="stylesheet" href="../static/css/core.css" th:href="@{/css/core.css}">
+    <link type="text/css" rel="stylesheet" href="../static/css/icon.css" th:href="@{/css/icon.css}">
+    <link type="text/css" rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" th:href="@{https://unpkg.com/element-ui/lib/theme-chalk/index.css}">
+    <script type="text/javascript" src="../static/layui/layui.js" th:src="@{/layui/layui.js}"></script>
+    <script type="text/javascript" src="../static/js/jquery-2.1.4.min.js" th:src="@{/js/jquery-2.1.4.min.js}"></script>
+    <script type="text/javascript">
+        var currentShowCity = 0;
+        $(document).ready(function () {
+            $("#province").change(function () {
+                $("#province option").each(function (i, o) {
+                    if ($(this).attr("selected")) {
+                        $(".city").hide();
+                        $(".city").eq(i).show();
+                        currentShowCity = i;
+                    }
+                });
+            });
+
+            $("#province").change();
+        });
+
+        function getSelectValue() {
+            alert("1级=" + $("#province").val());
+            $(".city").each(function (i, o) {
+                if (i == currentShowCity) {
+
+                    alert("2级=" + $(".city").eq(i).val());
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+<!-- head YDC begin -->
+<header class="ydc-header">
+    <div class="ydc-entered">
+        <div class="ydc-header-content ydc-flex">
+            <div class="ydc-column">
+                <a href="index.html" class="ydc-column-ydc-logo">
+                    <img src="admin/images/icon/ydc-logo.png" title="" about="" alt="">
+                </a>
+            </div>
+            <div class="ydc-column">
+                <div class="ydc-column-user">
+                    <div class="ydc-user-photo">
+                        <a href="javascript:;">
+                            <img src="../static/images/photo.png" title="" about="" alt="" th:src="@{/images/photo.png}">
+                        </a>
+                    </div>
+                    <div class="ydc-user-info">
+                        <div class="ydc-user-info-name">
+                            <a href="javascript:;" th:text="${name}">XXX</a>
+                        </div>
+                        <div class="ydc-user-info-func ydc-flex">
+                            <span class="ydc-mal"></span>
+                            <a href="javascript:;">退出</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- head YDC end -->
+
+<!-- content YDC begin -->
+<section>
+    <div class="ydc-content-slide ydc-body">
+        <div class="ydc-flex">
+            <!-- left begin -->
+            <div class="ydc-column ydc-column-2">
+                <div class="ydc-menu">
+                    <ul>
+                        <li class="ydc-menu-item">
+                            <a href="index.html" class="" th:href="@{/index}">
+                                <i class="ydc-icon ydc-icon-home fl"></i>
+                                首页
+                            </a>
+                        </li>
+                        <li class="ydc-menu-item">
+                            <a href="manage-push.html" class="" th:href="@{/manage/index}">
+                                <i class="ydc-icon ydc-icon-find fl"></i>
+                                发布
+                            </a>
+                        </li>
+                        <li class="ydc-menu-item">
+                            <span class="ydc-menu-sub-title">
+                                <i class="ydc-icon ydc-icon-file fl"></i>
+                                管理
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="#">内容</a>
+                                </li>
+                                <li>
+                                    <a href="manage-friend.html" th:href="@{/manage/friend/index}">好友</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="active">标签</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="ydc-menu-item">
+                            <span class="ydc-menu-sub-title">
+                                <i class="ydc-icon ydc-icon-set fl"></i>
+                                设置
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="info.html" th:href="@{/manage/info/index}">账号信息</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="ydc-menu-item">
+                            <span class="ydc-menu-sub-title">
+                                <i class="ydc-icon ydc-icon-customer fl"></i>
+                                客服
+
+                            </span>
+                            <ul>
+                                <li>
+                                    <a href="#">在线咨询</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <!-- left end -->
+            <!-- right begin -->
+            <div class="ydc-column ydc-column-8">
+                <div class="ydc-release-content">
+                    <div class="ydc-tabPanel ydc-tabPanel-release">
+                        <div class="ydc-release-tab-head">
+                            <ul>
+                                <li class="hit">权限变更</li>
+                            </ul>
+                        </div>
+                        <div class="ydc-panes">
+                            <div class="block">
+                                <p>使用 scoped slot</p>
+                                <el-tree :data="data" node-key="id" default-expand-all :expand-on-click-node="false">
+                                    <span class="custom-tree-node" slot-scope="{ node, data }">
+                                    <span>{{ node.label }}</span>
+                                    <span>
+                                        <el-button type="text" size="mini" th:@click="|loadTag(data.id)|" v-show="node.level==1">
+                                        manage
+                                        </el-button>
+                                    </span>
+                                  </span>
+                                </el-tree>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- right end -->
+        </div>
+    </div>
+</section>
+<el-dialog title="标签管理" :visible.sync="dialogTableVisible" v-loading="loading">
+    <el-transfer
+            v-model="dialogValue"
+            :data="dialogData">
+    </el-transfer>
+    <el-button type="success" th:v-on:click="confirmTag">确定</el-button>
+</el-dialog>
+<!-- content YDC end -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="../static/js/local.js" th:src="@{/js/local.js}"></script>
+<script type="text/javascript" th:inline="javascript">
+    let app = new Vue({
+        el: "#app",
+        data: {
+            dialogTableVisible: false,
+            loading: false,
+            dialogData: [],
+            dialogValue: [],
+            tagId: null,
+            data: [[${tags}]]
+        },
+        methods: {
+            loadTag: function (tagId) {
+                this.loading = true;
+                this.dialogTableVisible = true;
+                $.ajax({
+                    url: "/manage/tag?tagId=" + tagId,
+                    type: "get",
+                    success: function (result) {
+                        let activeFriends = result.activeFriends;
+                        let notActiveFriends = result.notActiveFriends;
+                        let data = [];
+                        let value = [];
+                        for (let i = 0; i < notActiveFriends.length; i++) {
+                            value.push(i);
+                        }
+                        let allFriends = notActiveFriends.concat(activeFriends);
+                        allFriends.forEach((friend, index) =>{
+                           data.push({
+                               label: friend.name,
+                               key: index,
+                               userId: friend.userId
+                           })
+                        });
+                        app.tagId = tagId;
+                        app.dialogData = data;
+                        app.dialogValue = value;
+                        app.loading = false;
+                    }
+                });
+            },
+            confirmTag: function () {
+                let userIdArray = [];
+                this.dialogData.forEach((tag, index) => {
+                    if (this.dialogValue.indexOf(index) == -1) {
+                        userIdArray.push(this.dialogData[index].userId);
+                    }
+                });
+                let data = JSON.stringify({
+                    "tagId": this.tagId,
+                    "userIdArray": userIdArray
+                });
+                $.ajax({
+                    url: "/manage/tag/update",
+                    type: "post",
+                    contentType: "application/json",
+                    data: data,
+                    success: function () {
+                        window.location.reload();
+                    }
+                });
+            },
+            append: function (data) {
+                const newChild = { id: id++, label: 'testtest', children: [] };
+                if (!data.children) {
+                    this.$set(data, 'children', []);
+                }
+                data.children.push(newChild);
+            },
+            remove: function (node, data) {
+                const parent = node.parent;
+                const children = parent.data.children || parent.data;
+                const index = children.findIndex(d => d.id === data.id);
+                children.splice(index, 1);
+            }
+        }
+    });
+</script>
+<script type="text/javascript" src="../static/js/nicEdit.js" th:src="@{/js/nicEdit.js}"></script>
+<script type="text/javascript" src="../static/js/upImg.js" th:src="@{/js/upImg.js}"></script>
+<script type="text/javascript">
+
+    jQuery(function () {
+        upload_start();
+    });
+    //tab切换
+    $(function () {
+        $('.aui-ad-tab-title ul li').click(function () {
+            $(this).addClass('aui-current').siblings().removeClass('aui-current');
+            $('.aui-ad-tab-body>div:eq(' + $(this).index() + ')').show().siblings().hide();
+        })
+    });
+
+</script>
+<script type="text/javascript">
+
+    bkLib.onDomLoaded(function () {
+        nicEditors.allTextAreas()
+    });//编辑器
+
+</script>
+<script type="text/javascript">
+
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {
+            slideIndex = 1
+        }
+        slides[slideIndex - 1].style.display = "block";
+        setTimeout(showSlides, 3000); // AD滚动时间
+    }
+
+</script>
+<script type="text/javascript">
+
+    $(function () {
+        $('.ydc-tabPanel ul li').click(function () {
+            $(this).addClass('hit').siblings().removeClass('hit');
+            $('.ydc-panes>div:eq(' + $(this).index() + ')').show().siblings().hide();
+        })
+    })//tab
+
+</script>
+<script type="text/javascript">
+
+    function textLimitCheck(thisArea, maxLength) {
+        if (thisArea.value.length > maxLength) {
+            alert(maxLength + ' 个字限制. \r超出的将自动清除.');
+            thisArea.value = thisArea.value.substring(0, 30);
+            thisArea.focus();
+        }
+        messageCount.innerText = thisArea.value.length;
+        messageCount1.innerText = thisArea.value.length;
+        messageCount2.innerText = thisArea.value.length;
+    }//标题输入框字数限制
+
+</script>
+</div>
+</body>
+</html>

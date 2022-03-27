@@ -48,15 +48,30 @@ public interface ShareDao {
 
     /**
      * 插入新分享动态
-     * @param shareItem
      */
     void insertShareItem(@Param("item") ShareItem shareItem);
 
     /**
      * 插入照片连接
-     * @param photoItem
      */
     void insertPhotoItem(@Param("item") PhotoItem photoItem);
+
+    /**
+     * 根据标签id查询名字
+     */
+    TagItem[] idInIds(@Param("ids") String[] ids);
+
+    TagItem[] idNotInIds(@Param("ids") String[] ids, @Param("userId") String userId);
+
+    /**
+     * 查询文章的所用的标签组
+     */
+    String retrieveTagGroupAtShare(@Param("shareId") String shareId);
+
+    /**
+     * 查询用户创建的所有标签
+     */
+    TagItem[] retrieveTagAtUser(@Param("userId") String userId);
 
     boolean retrieveStatusAt(@Param("shareID") String shareID);
     void deleteAt(@Param("shareID") String shareID);

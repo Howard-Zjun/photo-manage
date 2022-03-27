@@ -1,8 +1,6 @@
 package pers.howard.personalspace.service;
 
-import pers.howard.personalspace.model.PhotoItem;
-import pers.howard.personalspace.model.PublishItem;
-import pers.howard.personalspace.model.ShareItem;
+import pers.howard.personalspace.model.*;
 
 public interface ManageService {
 
@@ -12,5 +10,25 @@ public interface ManageService {
 
     String savePhotoPath(PhotoItem photoItem);
 
-    String getNameAt(String userId);
+    String nameAtUserId(String userId);
+
+    PersonItem[] friendAtUserId(String userId, int offset, int size);
+
+    int friendCountAtUserId(String userId);
+
+    void deleteFriendAtUserIdAndFriendId(String userId, String friendId);
+
+    TagItem[] tagAtUserId(String userId);
+
+    PersonItem[] friendInTagId(String tagId);
+
+    PersonItem[] friendNotInTagId(String tagId, String userId);
+
+    void deleteTagRelationshipAtTagId(String tagId);
+
+    void insertTagRelationship(String tagId, String userId, String[] friendIdArray);
+
+    PersonItem userAtUserId(String userId);
+
+    void updateAtUserId(PersonItem personItem);
 }

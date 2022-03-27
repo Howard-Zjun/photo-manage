@@ -66,4 +66,25 @@
         insert into share_photo_set (share_id, photo_path)
         values (#{item.shareId}, #{item.photoPath})
     </insert>
+
+    <select id="retrieveTagGroupAtShare" resultType="java.lang.String">
+        select tag_id_group from share where share_id = #{shareId}
+    </select>
+    <select id="idInIds" resultType="pers.howard.personalspace.model.TagItem">
+        select tag_id, name ,canSee from tag where tag_id in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="idNotInIds" resultType="pers.howard.personalspace.model.TagItem">
+        select tag_id, name ,canSee from tag where user_id = #{userId} and tag_id not in
+        <foreach collection="ids" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </select>
+
+    <select id="retrieveTagAtUser" resultType="pers.howard.personalspace.model.TagItem">
+        select tag_id, name, canSee from tag where user_id = #{userId}
+    </select>
 </mapper>
