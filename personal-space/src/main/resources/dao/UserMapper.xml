@@ -94,4 +94,8 @@
             </foreach>
             and tag_id = #{tagId}
     </insert>
+
+    <select id="isFriend" resultType="java.lang.Integer">
+        select count(*) > 0 from friend_relationship where user_id = #{userId} and friend_id = #{friendId}
+    </select>
 </mapper>

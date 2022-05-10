@@ -6,11 +6,13 @@ import java.util.Date;
 
 public class SharePreviewItem {
     protected String shareId;
+    protected String userId;
     protected String title;
     protected Date sendDate;
     protected String detail;
     protected String tags;
     protected String photoPath;
+    protected String tagIdGroup;
     protected int visitNum;
     protected int remarkNum;
     protected int likeNum;
@@ -34,6 +36,13 @@ public class SharePreviewItem {
         return tags.split(";");
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
     public String getTitle() {
         return title;
     }
@@ -104,5 +113,11 @@ public class SharePreviewItem {
 
     public void setLikeNum(int likeNum) {
         this.likeNum = likeNum;
+    }
+
+    public String getTagIdGroup() { return tagIdGroup; }
+
+    public void setTagIdGroup(String tagIdGroup) {
+        this.tagIdGroup = tagIdGroup;
     }
 }
