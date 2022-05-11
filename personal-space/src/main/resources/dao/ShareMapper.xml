@@ -50,7 +50,7 @@
     </update>
 
     <select id="retrievePersonalPreviewAt" resultType="pers.howard.personalspace.model.PhotoPreviewItem">
-        select * from share a, share_photo_set b where a.share_id = b.share_id and user_Id = #{userId} group by photo_path
+        select * from share_photo_set join share using(share_id) where  user_id = #{userId} group  by photo_path
     </select>
 
     <insert id="insertShareItem" parameterType="pers.howard.personalspace.model.ShareItem"

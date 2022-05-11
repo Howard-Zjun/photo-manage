@@ -31,4 +31,6 @@ public interface ManageService {
     PersonItem userAtUserId(String userId);
 
     void updateAtUserId(PersonItem personItem);
+
+    void createTag(String tagName, String userId);
 }

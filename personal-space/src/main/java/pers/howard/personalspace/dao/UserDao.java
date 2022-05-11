@@ -85,4 +85,7 @@ public interface UserDao {
     void insertTagRelationship(@Param("tagId") String tagId, @Param("userId") String userId, @Param("friendIdArray") String[] friendIdArray);
 
     int isFriend(@Param("userId") String userId, @Param("friendId") String friendId);
+
+    void createTag(@Param("tagName") String tagName, @Param("userId") String userId);
+
 }

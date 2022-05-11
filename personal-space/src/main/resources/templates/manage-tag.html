@@ -158,6 +158,8 @@
                                     </span>
                                   </span>
                                 </el-tree>
+                                <el-input v-model="input" placeholder="创建新的权限标签"></el-input>
+                                <el-button type="primary" @click="createTag">确认</el-button>
                             </div>
                         </div>
                     </div>
@@ -188,7 +190,8 @@
             dialogData: [],
             dialogValue: [],
             tagId: null,
-            data: [[${tags}]]
+            data: [[${tags}]],
+            input: null
         },
         methods: {
             loadTag: function (tagId) {
@@ -265,6 +268,27 @@
                 }
                 console.log('已清除');
                 location.href = "http://localhost:8080/index";
+            },
+            createTag: function () {
+                if (this.input == null) {
+                    this.$message({
+                        message: '标签名不能为空',
+                        type: 'warning'
+                    });
+                    return;
+                }
+                let data = JSON.stringify({
+                    "name": this.input
+                });
+                $.ajax({
+                    url: "/manage/tag/create",
+                    type: "post",
+                    contentType: "application/json",
+                    data: data,
+                    success: function () {
+                        location.reload();
+                    }
+                });
             }
         }
     });

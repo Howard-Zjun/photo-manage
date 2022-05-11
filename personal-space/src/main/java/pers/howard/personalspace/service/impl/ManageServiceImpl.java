@@ -94,4 +94,9 @@ public class ManageServiceImpl implements ManageService {
     public void updateAtUserId(PersonItem personItem) {
         userDao.updateAtUserId(personItem);
     }
+
+    @Override
+    public void createTag(String tagName, String userId) {
+        userDao.createTag(tagName, userId);
+    }
 }

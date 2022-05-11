@@ -151,4 +151,12 @@ public class ManageController {
     public void quit(HttpServletRequest request) {
 
     }
+
+    @PostMapping("/tag/create")
+    @ResponseBody
+    public void createTag(@RequestBody TagItem tagItem, HttpServletRequest request) {
+        Cookie cookie = toolKit.getSingleCookieAtName(request, userIdName);
+        String userId = cookie.getValue();
+        manageService.createTag(tagItem.getName(), userId);
+    }
 }

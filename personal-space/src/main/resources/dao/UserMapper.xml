@@ -98,4 +98,9 @@
     <select id="isFriend" resultType="java.lang.Integer">
         select count(*) > 0 from friend_relationship where user_id = #{userId} and friend_id = #{friendId}
     </select>
+
+    <insert id="createTag">
+        insert into tag (name, canSee, user_id)
+        values (#{tagName}, 1, #{userId})
+    </insert>
 </mapper>
