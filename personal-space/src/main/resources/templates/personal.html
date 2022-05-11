@@ -32,9 +32,6 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="index.html" th:href="@{/index}">首页</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="about.html">About</a>
-                            </li>
                             <li class="nav-item active">
                                 <a class="nav-link" href="personal.html"
                                    th:href="@{/personal/index}">我的相册</a>
@@ -106,7 +103,7 @@
                                 </figure>
                             </a>
                             <el-button type="primary" th:@click="|loadTag(${item.shareId})|">标签管理</el-button>
-                            <el-button type="danger" icon="el-icon-delete" th:v-on:click="|delete(${item.shareId})|">删除</el-button>
+                            <el-button type="danger" icon="el-icon-delete" th:@click="|deleteShare(${item.shareId})|">删除</el-button>
                         </div>
                         <el-dialog title="权限设置" :visible.sync="dialogTableVisible" v-loading="loading">
                             <el-transfer
@@ -216,19 +213,23 @@
                     type: "post",
                     contentType: "application/json",
                     data: data,
-                    success: function (boolean) {
-                        app.dialogTableVisible = false;
+                    success: function () {
+                        // app.dialogTableVisible = false;
+                        location.reload();
                     }
                 });
             },
-            delete: function (shareID) {
+            deleteShare: function (shareId) {
+                const data = JSON.stringify({
+                    "shareId" : shareId
+                });
                 $.ajax({
                     url: "/personal/delete",
                     type: "post",
-                    contentType: "application/text",
-                    data: shareID,
+                    contentType: "application/json",
+                    data: data,
                     success: function () {
-                        console.log("delete success");
+                        location.reload();
                     }
                 });
             }

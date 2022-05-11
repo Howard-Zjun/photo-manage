@@ -145,4 +145,10 @@ public class ManageController {
     public void userUpdate(@RequestBody PersonItem personItem) {
         manageService.updateAtUserId(personItem);
     }
+
+    @GetMapping("/quit")
+    @ResponseBody
+    public void quit(HttpServletRequest request) {
+
+    }
 }

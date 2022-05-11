@@ -23,7 +23,7 @@
 	<link type="text/css" rel="stylesheet" href="../static/css/core.css" th:href="@{/css/core.css}">
 	<link type="text/css" rel="stylesheet" href="../static/css/icon.css" th:href="@{/css/icon.css}">
 	<link type="text/css" rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
-	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" th:href="@{https://unpkg.com/element-ui/lib/theme-chalk/index.css}">
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body>
 <div id="app">
@@ -49,7 +49,7 @@
 							</div>
 							<div class="ydc-user-info-func ydc-flex">
 								<span class="ydc-mal"></span>
-								<a href="javascript:;">退出</a>
+								<el-button size="mini" @click="quit">退出</el-button>
 							</div>
 						</div>
 					</div>
@@ -86,9 +86,6 @@
                                     </span>
 								<ul>
 									<li>
-										<a href="#">内容</a>
-									</li>
-									<li>
 										<a href="manage-friend.html" th:href="@{/manage/friend/index}">好友</a>
 									</li>
 									<li>
@@ -105,18 +102,6 @@
 								<ul>
 									<li>
 										<a href="#" class="active">账号信息</a>
-									</li>
-								</ul>
-							</li>
-							<li class="ydc-menu-item">
-                                    <span class="ydc-menu-sub-title">
-                                        <i class="ydc-icon ydc-icon-customer fl"></i>
-                                        客服
-
-                                    </span>
-								<ul>
-									<li>
-										<a href="#">在线咨询</a>
 									</li>
 								</ul>
 							</li>
@@ -150,15 +135,15 @@
 											<el-radio v-model="sex" label="1">男</el-radio>
 											<el-radio v-model="sex" label="0">女</el-radio>
 										</div>
-										<div class="ydc-reg-form-group clearfix">
-											<label>头像:</label>
-											<div class="ydc-reg-form-input">
-												<input type="file" id="" name="username" class="" autocomplete="off" placeholder="">
-												<div class="ydc-reg-form-text">
-													<p>选取至少160*160尺寸的图片。请勿上传二维码或其他推广性质图片作为图标。</p>
-												</div>
-											</div>
-										</div>
+<!--										<div class="ydc-reg-form-group clearfix">-->
+<!--											<label>头像:</label>-->
+<!--											<div class="ydc-reg-form-input">-->
+<!--												<input type="file" id="" name="username" class="" autocomplete="off" placeholder="">-->
+<!--												<div class="ydc-reg-form-text">-->
+<!--													<p>选取至少160*160尺寸的图片。请勿上传二维码或其他推广性质图片作为图标。</p>-->
+<!--												</div>-->
+<!--											</div>-->
+<!--										</div>-->
 										<div class="ydc-reg-form-group clearfix">
 											<label>介绍:</label>
 											<div class="ydc-reg-form-input ydc-reg-form-input-width">
@@ -195,21 +180,12 @@
 											<label>手机号:</label>
 											<div class="ydc-reg-form-input">
 												<input type="text" id="user4" name="username" class="ydc-form-control" autocomplete="off" placeholder="XXX" v-model="phone">
-												<div class="ydc-reg-form-text">
-													<p>请输入手机号并验证</p>
-												</div>
-											</div>
-											<div class="ydc-reg-yzm">
-												<button>获取验证码</button>
 											</div>
 										</div>
 										<div class="ydc-reg-form-group clearfix">
 											<label>邮箱:</label>
 											<div class="ydc-reg-form-input">
 												<input type="text" id="user5" name="username" class="ydc-form-control" autocomplete="off" placeholder="aui_cn@163.com" v-model="email">
-											</div>
-											<div class="ydc-reg-form-text">
-												<p>请使用自己日常使用邮箱便于接受相关信息</p>
 											</div>
 										</div>
 									</div>
@@ -274,6 +250,18 @@
 							window.location.href = "http://localhost:8080/manage/info/index";
 						}
 					})
+				},
+				quit: function () {
+					var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+					if (keys) {
+						for (var i = keys.length; i--;) {
+							document.cookie = keys[i] + '=0;path=/;expires=' + new Date(0).toUTCString();//清除当前域名下的,例如：m.kevis.com
+							document.cookie = keys[i] + '=0;path=/;domain=' + document.domain + ';expires=' + new Date(0).toUTCString();//清除当前域名下的，例如 .m.kevis.com
+							document.cookie = keys[i] + '=0;path=/;domain=kevis.com;expires=' + new Date(0).toUTCString();//清除一级域名下的或指定的，例如 .kevis.com
+						}
+					}
+					console.log('已清除');
+					location.href = "http://localhost:8080/index";
 				}
 			}
 		});

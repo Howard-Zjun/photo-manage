@@ -10,7 +10,7 @@ public interface PersonalService {
     List<ShareDetailItem> retrieveAt(String userID, int page);
     void updateStatusAt(String shareID, boolean status);
     boolean retrieveStatusAt(String shareID);
-    void deleteAt(String shareID);
+    void deleteAt(String shareId);
     List<PhotoPreviewItem> previewItems(String userId);
     List<String> previewTags(List<PhotoPreviewItem> list);
 
@@ -19,4 +19,6 @@ public interface PersonalService {
     TagItem[] idInIdsAtUserId(String[] ids);
 
     TagItem[] idNotInIdsAtUserId(String[] ids, String userId);
+
+    void updateTagAtShare(String shareId, String tagIdGroup);
 }

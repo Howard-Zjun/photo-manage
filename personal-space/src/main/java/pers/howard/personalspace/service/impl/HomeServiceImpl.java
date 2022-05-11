@@ -34,7 +34,7 @@ public class HomeServiceImpl implements HomeService {
 
     @Override
     public boolean isAuthorityVisit(String shareId, String userId, String friendId, String permissionsTagGroup) {
-        if (userId.equals(friendId))
+        if (userId.equals(friendId) || permissionsTagGroup == null)
             return true;
         if (userDao.isFriend(userId, friendId) == 0)
             return false;

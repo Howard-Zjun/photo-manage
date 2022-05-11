@@ -36,11 +36,10 @@ public class HomeController {
     public String toIndex(@RequestParam(value = "index", required = false, defaultValue = "1") int index, Model model, HttpServletRequest request) {
         List<SharePreviewItem> list = homeService.previewItems();
         Cookie cookie = toolKit.getSingleCookieAtName(request, userIdName);
-        String userId = cookie.getValue();
-        if (userId == null || redisService.getTokenItem(userId) == null) {
+        if (cookie == null || cookie.getValue() == null || redisService.getTokenItem(cookie.getValue()) == null) {
             list = noLoginFilter(list);
         } else {
-            list = loginFilter(list, userId);
+            list = loginFilter(list, cookie.getValue());
         }
         PageHelper.startPage(index, 3);
         PageInfo<SharePreviewItem> pageInfo = new PageInfo<>(list);

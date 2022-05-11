@@ -50,7 +50,7 @@
 							</div>
 							<div class="ydc-user-info-func ydc-flex">
 								<span class="ydc-mal"></span>
-								<a href="javascript:;">退出</a>
+								<el-button size="mini" @click="quit">退出</el-button>
 							</div>
 						</div>
 					</div>
@@ -87,9 +87,6 @@
                                     </span>
 								<ul>
 									<li>
-										<a href="#">内容</a>
-									</li>
-									<li>
 										<a href="#" class="active">好友</a>
 									</li>
 									<li>
@@ -109,18 +106,6 @@
 									</li>
 								</ul>
 							</li>
-							<li class="ydc-menu-item">
-                                    <span class="ydc-menu-sub-title">
-                                        <i class="ydc-icon ydc-icon-customer fl"></i>
-                                        客服
-
-                                    </span>
-								<ul>
-									<li>
-										<a href="#">在线咨询</a>
-									</li>
-								</ul>
-							</li>
 						</ul>
 					</div>
 				</div>
@@ -136,12 +121,6 @@
 							</div>
 							<div class="ydc-panes">
 								<div class="ydc-pane" style="display:block;">
-									<div class="clearfix">
-										<div class="fl ydc-group-input">
-											<input type="text" placeholder="请输入关键词进行搜索">
-											<button class="ydc-group-button">搜 索</button>
-										</div>
-									</div>
 									<div class="ydc-group-altogether">共<span th:text="${#lists.size(friends)}">0</span>个好友</div>
 									<div class="ydc-group-table" th:each="friend:${friends}">
 										<div class="ydc-group-table-item">
@@ -209,6 +188,18 @@
 							window.location.reload();
 						}
 					});
+				},
+				quit: function () {
+					var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+					if (keys) {
+						for (var i = keys.length; i--;) {
+							document.cookie = keys[i] + '=0;path=/;expires=' + new Date(0).toUTCString();//清除当前域名下的,例如：m.kevis.com
+							document.cookie = keys[i] + '=0;path=/;domain=' + document.domain + ';expires=' + new Date(0).toUTCString();//清除当前域名下的，例如 .m.kevis.com
+							document.cookie = keys[i] + '=0;path=/;domain=kevis.com;expires=' + new Date(0).toUTCString();//清除一级域名下的或指定的，例如 .kevis.com
+						}
+					}
+					console.log('已清除');
+					location.href = "http://localhost:8080/index";
 				}
 			}
 		})

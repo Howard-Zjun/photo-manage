@@ -80,6 +80,8 @@ public class ManageServiceImpl implements ManageService {
 
     @Override
     public void insertTagRelationship(String tagId, String userId, String[] friendIdArray) {
+        if (friendIdArray.length == 0)
+            return ;
         userDao.insertTagRelationship(tagId, userId, friendIdArray);
     }
 

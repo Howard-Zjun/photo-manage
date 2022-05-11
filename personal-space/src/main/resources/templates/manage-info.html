@@ -23,13 +23,13 @@
 	<link type="text/css" rel="stylesheet" href="../static/css/core.css" th:href="@{/css/core.css}">
 	<link type="text/css" rel="stylesheet" href="../static/css/icon.css" th:href="@{/css/icon.css}">
 	<link type="text/css" rel="stylesheet" href="../static/css/home.css" th:href="@{/css/home.css}">
-
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 
 </head>
 <body>
 
 <!-- head YDC begin -->
-<header class="ydc-header">
+<header class="ydc-header" id="head">
 	<div class="ydc-entered">
 		<div class="ydc-header-content ydc-flex">
 			<div class="ydc-column">
@@ -50,7 +50,7 @@
 						</div>
 						<div class="ydc-user-info-func ydc-flex">
 							<span class="ydc-mal"></span>
-							<a href="javascript:;">退出</a>
+							<el-button size="mini" @click="quit">退出</el-button>
 						</div>
 					</div>
 				</div>
@@ -87,9 +87,6 @@
                                     </span>
 								<ul>
 									<li>
-										<a href="#">内容</a>
-									</li>
-									<li>
 										<a href="manage-friend.html" th:href="@{/manage/friend/index}">好友</a>
 									</li>
 									<li>
@@ -106,18 +103,6 @@
 								<ul>
 									<li>
 										<a href="#" class="active">账号信息</a>
-									</li>
-								</ul>
-							</li>
-							<li class="ydc-menu-item">
-                                    <span class="ydc-menu-sub-title">
-                                        <i class="ydc-icon ydc-icon-customer fl"></i>
-                                        客服
-
-                                    </span>
-								<ul>
-									<li>
-										<a href="customer.html">在线咨询</a>
 									</li>
 								</ul>
 							</li>
@@ -148,15 +133,15 @@
 											<label th:text="${user.sex}==true?'男':'女'">X</label>
 										</div>
 									</div>
-									<div class="ydc-reg-form-group clearfix">
-										<label>头像</label>
-										<div class="ydc-reg-form-input">
-											<label></label>
-											<div class="ydc-reg-form-text ydc-reg-form-user-logo">
-												<img src="../static/images/photo.png" alt="" th:src="@{/images/photo.png}">
-											</div>
-										</div>
-									</div>
+<!--									<div class="ydc-reg-form-group clearfix">-->
+<!--										<label>头像</label>-->
+<!--										<div class="ydc-reg-form-input">-->
+<!--											<label></label>-->
+<!--											<div class="ydc-reg-form-text ydc-reg-form-user-logo">-->
+<!--												<img src="../static/images/photo.png" alt="" th:src="@{/images/photo.png}">-->
+<!--											</div>-->
+<!--										</div>-->
+<!--									</div>-->
 									<div class="ydc-reg-form-group clearfix">
 										<label>介绍</label>
 										<div class="ydc-reg-form-input">
@@ -209,9 +194,27 @@
 
 	</section>
 <!-- content YDC end -->
-
+	<script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 	<script type="text/javascript" src="../static/js/jquery-2.1.4.min.js" th:src="@{/js/jquery-2.1.4.min.js}"></script>
 	<script type="text/javascript">
+		new Vue({
+			el:"#head",
+			methods: {
+				quit: function () {
+					var keys = document.cookie.match(/[^ =;]+(?=\=)/g);
+					if (keys) {
+						for (var i = keys.length; i--;) {
+							document.cookie = keys[i] + '=0;path=/;expires=' + new Date(0).toUTCString();//清除当前域名下的,例如：m.kevis.com
+							document.cookie = keys[i] + '=0;path=/;domain=' + document.domain + ';expires=' + new Date(0).toUTCString();//清除当前域名下的，例如 .m.kevis.com
+							document.cookie = keys[i] + '=0;path=/;domain=kevis.com;expires=' + new Date(0).toUTCString();//清除一级域名下的或指定的，例如 .kevis.com
+						}
+					}
+					console.log('已清除');
+					location.href = "http://localhost:8080/index";
+				}
+			}
+		});
 	    var slideIndex = 0;
 	    showSlides();
 

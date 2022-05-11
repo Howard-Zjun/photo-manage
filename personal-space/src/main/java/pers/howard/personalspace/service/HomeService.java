@@ -14,5 +14,5 @@ public interface HomeService {
      */
     void likeAt(LikeItem likeItem);
 
-    public boolean isAuthorityVisit(String shareId, String userId, String friendId, String permissionsTagGroup);
+    boolean isAuthorityVisit(String shareId, String userId, String friendId, String permissionsTagGroup);
 }

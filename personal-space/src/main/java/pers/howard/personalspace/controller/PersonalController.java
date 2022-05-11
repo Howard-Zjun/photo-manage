@@ -6,10 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import pers.howard.personalspace.config.ToolKit;
-import pers.howard.personalspace.model.PhotoPreviewItem;
-import pers.howard.personalspace.model.ShareDetailItem;
-import pers.howard.personalspace.model.TagItem;
-import pers.howard.personalspace.model.UpdateShareTagItem;
+import pers.howard.personalspace.model.*;
 import pers.howard.personalspace.service.PersonalService;
 
 import javax.servlet.http.Cookie;
@@ -66,11 +63,12 @@ public class PersonalController {
 
     /**
      * 删除动态
-     * @param shareID 动态ID
+     * @param shareItem getShareId 动态ID
      */
-    @DeleteMapping("/delete")
-    public void delete(@RequestBody String shareID) {
-        personalService.deleteAt(shareID);
+    @PostMapping("/delete")
+    @ResponseBody
+    public void delete(@RequestBody ShareItem shareItem) {
+        personalService.deleteAt(shareItem.getShareId());
     }
 
     @GetMapping("/tag")
@@ -91,7 +89,15 @@ public class PersonalController {
 
     @PostMapping("/confirm")
     @ResponseBody
-    public boolean updateTagAtShare(@RequestBody UpdateShareTagItem updateShareTagItem) {
-        return true;
+    public void updateTagAtShare(@RequestBody UpdateShareTagItem updateShareTagItem) {
+        String[] temp = updateShareTagItem.getTagIds();
+        String tagIdGroup = null;
+        if (!(temp == null || temp.length == 0)) {
+            tagIdGroup = temp[0];
+            for (int i = 1; i < temp.length; i++) {
+                tagIdGroup += ";" + temp[i];
+            }
+        }
+        personalService.updateTagAtShare(updateShareTagItem.getShareId(), tagIdGroup);
     }
 }

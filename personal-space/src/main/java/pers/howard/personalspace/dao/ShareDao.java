@@ -75,4 +75,6 @@ public interface ShareDao {
 
     boolean retrieveStatusAt(@Param("shareID") String shareID);
     void deleteAt(@Param("shareID") String shareID);
+
+    void updateTagAtShare(@Param("shareId") String shareId, @Param("tagIdGroup") String tagIdGroup);
 }

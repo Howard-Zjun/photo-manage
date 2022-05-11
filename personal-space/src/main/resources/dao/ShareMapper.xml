@@ -50,7 +50,7 @@
     </update>
 
     <select id="retrievePersonalPreviewAt" resultType="pers.howard.personalspace.model.PhotoPreviewItem">
-        select * from share a, share_photo_set b where a.share_id = b.share_id group by photo_path
+        select * from share a, share_photo_set b where a.share_id = b.share_id and user_Id = #{userId} group by photo_path
     </select>
 
     <insert id="insertShareItem" parameterType="pers.howard.personalspace.model.ShareItem"
@@ -87,4 +87,8 @@
     <select id="retrieveTagAtUser" resultType="pers.howard.personalspace.model.TagItem">
         select tag_id, name, canSee from tag where user_id = #{userId}
     </select>
+
+    <update id="updateTagAtShare">
+        update share set tag_id_group = #{tagIdGroup} where share_id = #{shareId}
+    </update>
 </mapper>

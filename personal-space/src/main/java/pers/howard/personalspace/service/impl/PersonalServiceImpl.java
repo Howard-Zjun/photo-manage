@@ -73,4 +73,9 @@ public class PersonalServiceImpl implements PersonalService {
         }
         return shareDao.idNotInIds(ids, userId);
     }
+
+    @Override
+    public void updateTagAtShare(String shareId, String tagIdGroup) {
+        shareDao.updateTagAtShare(shareId, tagIdGroup);
+    }
 }
