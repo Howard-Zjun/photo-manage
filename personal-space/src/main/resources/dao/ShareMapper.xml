@@ -8,14 +8,12 @@
 
     <select id="retrievePreviewAt" resultType="pers.howard.personalspace.model.SharePreviewItem">
         select * from share
-                          left join share_replenish on share.share_id = share_replenish.share_id
                           left join share_photo_set on share.share_id = share_photo_set.share_id
     </select>
 
     <select id="retrieveDetailAt" resultType="pers.howard.personalspace.model.ShareDetailItem">
         select * from share
             left join share_photo_set sps on share.share_id = sps.share_id
-            left join share_replenish on share.share_id = share_replenish.share_id
             where share.share_id = #{shareId}
     </select>
 
@@ -45,9 +43,25 @@
         delete from share where share_id = #{shareID}
     </delete>
 
-    <update id="increaseLikeAt" parameterType="java.lang.Integer">
-        update share_replenish set like_num = like_num + 1 where share_id = #{shareId}
-    </update>
+    <select id="likeCountAt" resultType="java.lang.Integer">
+        select count(*) from share_replenish where share_id = #{shareId}
+    </select>
+
+    <select id="remarkCountAt" resultType="java.lang.Integer">
+        select count(*) from share_interaction where share_id = #{shareId}
+    </select>
+
+    <insert id="likeShareAt">
+        insert into share_replenish values (#{shareId}, #{userId})
+    </insert>
+
+    <select id="isLike" resultType="java.lang.Integer">
+        select count(*) from share_replenish where share_id = #{shareId} and user_id = #{userId}
+    </select>
+
+    <delete id="delikeShareAt">
+        delete from share_replenish where share_id = #{shareId} and user_id = #{userId}
+    </delete>
 
     <select id="retrievePersonalPreviewAt" resultType="pers.howard.personalspace.model.PhotoPreviewItem">
         select * from share_photo_set join share using(share_id) where  user_id = #{userId} group  by photo_path

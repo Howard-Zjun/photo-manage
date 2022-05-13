@@ -8,11 +8,15 @@ import java.util.List;
 public interface HomeService {
     List<SharePreviewItem> previewItems();
 
-    /**
-     * 点赞
-     * @param likeItem
-     */
-    void likeAt(LikeItem likeItem);
+    void likeShareAt(LikeItem likeItem);
+
+    int isLike(LikeItem likeItem);
+
+    void delikeShareAt(LikeItem likeItem);
+
+    int likeCountAt(String shareId);
+
+    int remarkCountAt(String shareId);
 
     boolean isAuthorityVisit(String shareId, String userId, String friendId, String permissionsTagGroup);
 }

@@ -35,9 +35,13 @@ public interface DetailService {
      */
     void addRemarkItem(LogRemarkItem remarkItem);
 
-    /**
-     * 点赞数增长
-     * @param likeItem
-     */
-    void increaseLike(LikeItem likeItem);
+    void likeShareAt(LikeItem likeItem);
+
+    int isLike(LikeItem likeItem);
+
+    void delikeShareAt(LikeItem likeItem);
+
+    int likeCountAt(String shareId);
+
+    int remarkCountAt(String shareId);
 }

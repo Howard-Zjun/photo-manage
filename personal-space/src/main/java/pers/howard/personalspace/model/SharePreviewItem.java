@@ -13,7 +13,6 @@ public class SharePreviewItem {
     protected String tags;
     protected String photoPath;
     protected String tagIdGroup;
-    protected int visitNum;
     protected int remarkNum;
     protected int likeNum;
 
@@ -89,14 +88,6 @@ public class SharePreviewItem {
 
     public void setPhotoPath(String photoPath) {
         this.photoPath = photoPath;
-    }
-
-    public int getVisitNum() {
-        return visitNum;
-    }
-
-    public void setVisitNum(int visitNum) {
-        this.visitNum = visitNum;
     }
 
     public int getRemarkNum() {

@@ -27,9 +27,28 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public void likeAt(LikeItem likeItem) {
-        Integer value = Integer.valueOf(likeItem.getShareId());
-        shareDao.increaseLikeAt(value);
+    public void likeShareAt(LikeItem likeItem) {
+        shareDao.likeShareAt(likeItem.getShareId(), likeItem.getUserId());
+    }
+
+    @Override
+    public int isLike(LikeItem likeItem) {
+        return shareDao.isLike(likeItem.getShareId(), likeItem.getUserId());
+    }
+
+    @Override
+    public void delikeShareAt(LikeItem likeItem) {
+        shareDao.delikeShareAt(likeItem.getShareId(), likeItem.getUserId());
+    }
+
+    @Override
+    public int likeCountAt(String shareId) {
+        return shareDao.likeCountAt(shareId);
+    }
+
+    @Override
+    public int remarkCountAt(String shareId) {
+        return shareDao.remarkCountAt(shareId);
     }
 
     @Override

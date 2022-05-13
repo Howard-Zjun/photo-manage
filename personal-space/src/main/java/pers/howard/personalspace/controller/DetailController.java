@@ -22,6 +22,10 @@ public class DetailController {
     @GetMapping("/index")
     public String toIndex(@RequestParam("shareId") String shareId, Model model) {
         ShareDetailItem article = detailService.detailItem(shareId);
+        int likeCount = detailService.likeCountAt(shareId);
+        int remarkCount = detailService.remarkCountAt(shareId);
+        article.setLikeNum(likeCount);
+        article.setRemarkNum(remarkCount);
         List<RemarkItem> remarks = detailService.remarkItems(shareId);
         String name = detailService.authorName(shareId);
         model.addAttribute("article", article);
@@ -38,7 +42,11 @@ public class DetailController {
 
     @PostMapping("/like")
     @ResponseBody
-    public void likeAt(@RequestBody LikeItem likeItem) {
-        detailService.increaseLike(likeItem);
+    public void updateLikeStatus(@RequestBody LikeItem likeItem) {
+        if (detailService.isLike(likeItem) > 0) {
+            detailService.delikeShareAt(likeItem);
+        } else {
+            detailService.likeShareAt(likeItem);
+        }
     }
 }

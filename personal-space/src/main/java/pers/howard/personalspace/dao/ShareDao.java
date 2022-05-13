@@ -36,10 +36,15 @@ public interface ShareDao {
      */
     void insertRemarkItem(@Param("item") LogRemarkItem logRemarkItem);
 
-    /**
-     * 文章点赞增长
-     */
-    void increaseLikeAt(@Param("shareId") int shareId);
+    Integer likeCountAt(@Param("shareId") String shareId);
+
+    Integer remarkCountAt(@Param("shareId") String shareId);
+
+    void likeShareAt(@Param("shareId") String shareId, @Param("userId") String userId);
+
+    Integer isLike(@Param("shareId") String shareId, @Param("userId") String userId);
+
+    void delikeShareAt(@Param("shareId") String shareId, @Param("userId") String userId);
 
     /**
      * 检索个人文章预览

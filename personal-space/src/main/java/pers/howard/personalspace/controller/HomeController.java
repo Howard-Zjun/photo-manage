@@ -43,10 +43,17 @@ public class HomeController {
         }
         PageHelper.startPage(index, 3);
         PageInfo<SharePreviewItem> pageInfo = new PageInfo<>(list);
+        List<SharePreviewItem> resList = pageInfo.getList();
+        for (int i = 0; i < resList.size(); i++) {
+            int likeCount = homeService.likeCountAt(resList.get(i).getShareId());
+            int remarkCount = homeService.remarkCountAt(resList.get(i).getShareId());
+            resList.get(i).setLikeNum(likeCount);
+            resList.get(i).setRemarkNum(remarkCount);
+        }
         model.addAttribute("minIndex", 0);
         model.addAttribute("index", index);
         model.addAttribute("isHasNextPage", pageInfo.isHasNextPage());
-        model.addAttribute("list", pageInfo.getList());
+        model.addAttribute("list", resList);
         return "index";
     }
 
@@ -54,7 +61,11 @@ public class HomeController {
     @PostMapping("/like")
     @ResponseBody
     public void likeAt(@RequestBody LikeItem likeItem) {
-        homeService.likeAt(likeItem);
+        if (homeService.isLike(likeItem) > 0) {
+            homeService.delikeShareAt(likeItem);
+        } else {
+            homeService.likeShareAt(likeItem);
+        }
     }
 
     public List<SharePreviewItem> noLoginFilter(List<SharePreviewItem> list) {
