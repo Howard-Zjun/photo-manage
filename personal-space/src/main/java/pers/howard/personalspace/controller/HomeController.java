@@ -15,6 +15,7 @@ import pers.howard.personalspace.service.RedisService;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -49,6 +50,10 @@ public class HomeController {
             int remarkCount = homeService.remarkCountAt(resList.get(i).getShareId());
             resList.get(i).setLikeNum(likeCount);
             resList.get(i).setRemarkNum(remarkCount);
+            if (cookie != null && cookie.getValue() != null && redisService.getTokenItem(cookie.getValue()) != null) {
+                LikeItem likeItem = new LikeItem(resList.get(i).getShareId(), cookie.getValue());
+                resList.get(i).setIsLike(homeService.isLike(likeItem) > 0 ? true : false);
+            }
         }
         model.addAttribute("minIndex", 0);
         model.addAttribute("index", index);
@@ -60,12 +65,17 @@ public class HomeController {
 
     @PostMapping("/like")
     @ResponseBody
-    public void likeAt(@RequestBody LikeItem likeItem) {
+    public HashMap likeAt(@RequestBody LikeItem likeItem) {
+        HashMap ret = new HashMap<>();
         if (homeService.isLike(likeItem) > 0) {
             homeService.delikeShareAt(likeItem);
+            ret.put("isActive", false);
         } else {
             homeService.likeShareAt(likeItem);
+            ret.put("isActive", true);
         }
+        ret.put("likeCount", homeService.likeCountAt(likeItem.getShareId()));
+        return ret;
     }
 
     public List<SharePreviewItem> noLoginFilter(List<SharePreviewItem> list) {

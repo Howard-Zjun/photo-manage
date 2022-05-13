@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 <body id="top">
-<div class="page">
+<div class="page" id="app">
     <header>
         <div class="pp-header">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -102,8 +102,8 @@
                         </p>
                     </div>
                     <div class="op-list">
-                        <p class="like" id="likeVue">
-                            <i class="layui-icon layui-icon-praise" th:v-on:click="|add(${item.shareId})|"></i>
+                        <p th:attr="class=${item.isLike} ? 'like active' : 'like'">
+                            <i class="layui-icon layui-icon-praise" th:v-on:click="|add(${item.shareId}, $event)|"></i>
                             <span th:text="${item.likeNum}">-1</span>
                         </p>
                         <p class="edit">
@@ -117,7 +117,7 @@
                 </article>
             </div>
             <div class="pp-section" style="text-align: center">
-                <el-button-group style="text-align: center;" id="app">
+                <el-button-group style="text-align: center;">
                     <el-button type="primary" icon="el-icon-arrow-left" :disabled="index==1" @click="toPrevPage">上一页</el-button>
                     <el-button type="primary" icon="el-icon-arrow-right"  :disabled="!isHasNextPage" @click="toNextPage">下一页</el-button>
                 </el-button-group>
@@ -146,7 +146,7 @@
         el: "#app",
         data: {
             index: [[${index}]],
-            isHasNextPage: [[${isHasNextPage}]]
+            isHasNextPage: [[${isHasNextPage}]],
         },
         methods: {
             toPrevPage: function () {
@@ -156,6 +156,27 @@
             toNextPage: function () {
                 let willIndex = this.index + 1;
                 window.location.href = "http://localhost:8080/index?index=" + willIndex;
+            },
+            add: function (shareId, event) {
+                $.ajax({
+                    url: "/like",
+                    type: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        "userId": getCookie('userId'),
+                        "shareId": shareId,
+                    }),
+                    success: function (obj) {
+                        const node = event.target.parentNode;
+                        console.log(obj.isActive);
+                        if (obj.isActive) {
+                            node.classList.add('active');
+                        } else {
+                            node.classList.remove('active');
+                        }
+                        node.children[1].innerHTML = obj.likeCount;
+                    }
+                })
             }
         }
     })
@@ -179,25 +200,6 @@
 </script>
 <script th:inline="javascript">
     //<![CDATA[
-    new Vue({
-        el: "#likeVue",
-        methods: {
-            add: function (shareId) {
-                $.ajax({
-                    url: "/like",
-                    type: "post",
-                    contentType: "application/json",
-                    data: JSON.stringify({
-                        "userId": getCookie('userId'),
-                        "shareId": shareId,
-                    }),
-                    success: function () {
-                        document.getElementById('likeVue').className += ' active';
-                    }
-                })
-            }
-        }
-    })
     //]]>
 </script>
 </body>

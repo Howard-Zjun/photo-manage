@@ -15,12 +15,21 @@ public class SharePreviewItem {
     protected String tagIdGroup;
     protected int remarkNum;
     protected int likeNum;
+    protected boolean isLike;
 
     protected String[] monthName = {
             "January", "February", "March", "April",
             "May", "June", "July", "August",
             "September", "October", "November", "December"
     };
+
+    public boolean isLike() {
+        return isLike;
+    }
+
+    public void setIsLike(boolean isLike) {
+        this.isLike = isLike;
+    }
 
     public String defaultDateFormat() {
         if (sendDate == null)

@@ -104,8 +104,8 @@
                            th:text="${tag}">Nature</a>
                     </div>
                     <div class="op-list">
-                        <p class="like" id="likeVue">
-                            <i class="layui-icon layui-icon-praise" th:v-on:click="|add(${article.shareId})|"></i>
+                        <p id="likeVue" th:attr="class=${article.isLike} ? 'like active' : 'like'">
+                            <i class="layui-icon layui-icon-praise" th:v-on:click="|add(${article.shareId}, $event)|"></i>
                             <span th:text="${article.likeNum}">-1</span>
                         </p>
                     </div>
@@ -205,7 +205,7 @@
     var detailLikeJS = new Vue({
         el: "#likeVue",
         methods: {
-            add: function (shareId) {
+            add: function (shareId, event) {
                 $.ajax({
                     url: "/detail/like",
                     type: "post",
@@ -214,9 +214,15 @@
                         "userId": getCookie('userId'),
                         "shareId": shareId,
                     }),
-                    success: function () {
-                        document.getElementById('likeVue').className += ' active';
-                    }
+                    success: function (obj) {
+                        const node = event.target.parentNode;
+                        console.log(obj.isActive);
+                        if (obj.isActive) {
+                            node.classList.add('active');
+                        } else {
+                            node.classList.remove('active');
+                        }
+                        node.children[1].innerHTML = obj.likeCount;                    }
                 })
             }
         }
