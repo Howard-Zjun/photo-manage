@@ -22,7 +22,7 @@
                     <a href="index.html" th:href="@{/index}">
                         <img src="../static/images/favicon.png" th:src="@{/images/favicon.png}">
                     </a>
-                    <a class="navbar-brand" href="index.html" th:href="@{/index}">Photo Manage</a>
+                    <a class="navbar-brand" href="index.html" th:href="@{/index}">照片管理</a>
                     <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
                             class="navbar-toggler" data-target="#navbarNavAltMarkup" data-toggle="collapse"
                             type="button"><span class="navbar-toggler-icon"></span></button>
@@ -70,14 +70,14 @@
             <div class="pp-section pp-container-readable">
                 <div class="pp-post">
                     <!--                    <a class="h3" href="detail.html" th:text="${item.title}">You can do anything if you believe</a>-->
-                    <span class="h3" th:text="${article.title}">You can do anything if you believe</span>
+                    <span class="h3" th:text="${article.title}">你是可以的</span>
                     <div class="pp-post-meta mt-2">
                         <ul>
                             <li><i aria-hidden="true" class="fa fa-calendar-check-o"></i><span
                                     th:text="${article.defaultDateFormat()}">November 04, 2017</span></li>
-                            <li><i aria-hidden="true" class="fa fa-tags"></i><span><a href="#"><span>Branding</span></a>,
-                                <a href="#"><span>Design</span></a></span></li>
-                            <li><i aria-hidden="true" class="fa fa-comments"></i><a href="#pp-comment">Comments</a></li>
+                            <li><i aria-hidden="true" class="fa fa-tags"></i><span><a href="#"><span>摄影</span></a>,
+                                <a href="#"><span>设计</span></a></span></li>
+                            <li><i aria-hidden="true" class="fa fa-comments"></i><a href="#pp-comment">讨论</a></li>
                             <li><i aria-hidden="true" class="fa fa-user-circle"></i><a href="#"
                                                                                        th:text="${name}">Admin</a></li>
                         </ul>
@@ -87,21 +87,12 @@
                 </div>
                 <div class="pp-blog-details">
                     <p th:text="${article.detail}">
-                        Lorem ipsum dolor sit amet consectetur adipiscing elit molestie, non vel turpis urna erat cum
-                        parturient hac penatibus, nibh fusce semper sociis feugiat tempus fames.
-                        Duis sociosqu fermentum curae tellus vehicula class velit morbi facilisi neque aptent porta,
-                        faucibus ultrices ridiculus proin gravida hac cras felis penatibus mus primis pulvinar
-                        ultricies, auctor pharetra a cubilia nisi habitant dictumst iaculis vestibulum nibh fusce.
-                        Cras sapien nullam proin platea taciti lacinia curae ridiculus, hac aptent at mus litora
-                        habitant facilisis, netus vestibulum vel mattis porttitor odio massa.
-                        Egestas tristique etiam pharetra magnis sapien proin curabitur netus consequat dui eros primis
-                        aptent sed imperdiet leo fames, auctor ultrices lobortis accumsan nullam vivamus posuere lacus
-                        sociis sodales vestibulum lacinia luctus in suspendisse.
+                        很多内容...
                     </p>
                     <div class="pp-tags">
-                        <div class="h6">Tags</div>
+                        <div class="h6">标签</div>
                         <a class="badge badge-primary" href="#" th:each="tag:${article.defaultTagsFormat()}"
-                           th:text="${tag}">Nature</a>
+                           th:text="${tag}">自然</a>
                     </div>
                     <div class="op-list">
                         <p id="likeVue" th:attr="class=${article.isLike} ? 'like active' : 'like'">
@@ -109,7 +100,7 @@
                             <span th:text="${article.likeNum}">-1</span>
                         </p>
                     </div>
-                    <div class="h2">Comments</div>
+                    <div class="h2">讨论</div>
                     <div class="pp-comments" id="pp-comment" th:each="item:${remarks}">
                         <div class="media">
                             <img alt="Image" class="img-fluid mr-3" src="../static/images/face-5.jpg"
@@ -119,7 +110,7 @@
                                 <p class="text-muted" th:text="${item.defaultDateFormat()}">Nov 23, 2017 11:45am</p>
                                 <p th:text="${item.detail}">I love this</p>
                             </div>
-                            <a href="#pp-drop-comment"><i aria-hidden="true" class="fa fa-reply"></i><span>Reply</span></a>
+                            <a href="#pp-drop-comment"><i aria-hidden="true" class="fa fa-reply"></i><span>回复</span></a>
                         </div>
                         <!--                        <div class="media pl-5">-->
                         <!--                            <img alt="Image" class="img-fluid mr-3" src="../static/images/face-3.jpg" th:src="@{/images/face-3.jpg}"/>-->
@@ -135,17 +126,17 @@
                 <div class="pp-section"></div>
                 <div class="row" id="pp-drop-comment">
                     <div class="col" id="commentVue">
-                        <div class="h4 mb-3">Drop a Comment</div>
+                        <div class="h4 mb-3">写一个评论</div>
                         <div class="row mb-3">
                             <div class="col">
-                                <textarea class="form-control" name="message" placeholder="*Your Message" type="text"
+                                <textarea class="form-control" name="message" placeholder="*输入的内容" type="text"
                                           v-model="content"></textarea>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col">
                                 <button class="btn btn-primary" type="submit"
-                                        th:v-on:click="|submit(${article.shareId})|">Post Comment
+                                        th:v-on:click="|submit(${article.shareId})|">发布评论
                                 </button>
                             </div>
                         </div>

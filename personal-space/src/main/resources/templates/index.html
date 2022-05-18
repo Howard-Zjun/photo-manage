@@ -25,7 +25,7 @@
                     <a href="index.html" th:href="@{/index}">
                         <img src="../static/images/favicon.png" th:src="@{/images/favicon.png}">
                     </a>
-                    <a class="navbar-brand" href="index.html" th:href="@{/index}">Photo Manage</a>
+                    <a class="navbar-brand" href="index.html" th:href="@{/index}">照片管理</a>
                     <button aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation"
                             class="navbar-toggler" data-target="#navbarNavAltMarkup" data-toggle="collapse"
                             type="button"><span class="navbar-toggler-icon"></span></button>
@@ -80,25 +80,22 @@
                         <div class="pp-post-title">
                             <a class="h4" href="detail.html" th:href="@{/detail/index (shareId = ${item.shareId})}"
                                th:text="${item.title}">
-                                Healthy Meals for Busy Morning
+                                占位标题
                             </a>
                         </div>
                         <div class="pp-post-meta">
                             <ul>
                                 <li><i aria-hidden="true" class="fa fa-calendar-check-o"></i><span
                                         th:text="${item.defaultDateFormat()}">November 04, 2017</span></li>
-                                <li><i aria-hidden="true" class="fa fa-tags"></i><span><a href="#"><span>Branding</span></a>, <a
-                                        href="#"><span>Design</span></a></span></li>
-                                <li><i aria-hidden="true" class="fa fa-comments"></i><a href="#">Comments</a></li>
+                                <li><i aria-hidden="true" class="fa fa-tags"></i><span><a href="#"><span>摄影</span></a>, <a
+                                        href="#"><span>设计</span></a></span></li>
+                                <li><i aria-hidden="true" class="fa fa-comments"></i><a href="#">讨论</a></li>
                             </ul>
                         </div>
                     </header>
                     <div class="pp-post-content">
                         <p th:text="${item.detail}">
-                            Whether you've just got a new camera and are looking to learn some new photography
-                            techniques
-                            or have been shooting for a while and want to master some old ones, this essential
-                            photographer's resource is here to help.
+                            很多内容...
                         </p>
                     </div>
                     <div class="op-list">
@@ -112,7 +109,7 @@
                         </p>
                     </div>
                     <div class="pp-post-read-more">
-                        <a href="detail.html" th:href="@{/detail/index (shareId = ${item.shareId})}">Read More</a>
+                        <a href="detail.html" th:href="@{/detail/index (shareId = ${item.shareId})}">了解更多</a>
                     </div>
                 </article>
             </div>

@@ -34,7 +34,7 @@ public class PersonalController {
         String userId = cookie.getValue();
         List<PhotoPreviewItem> previewItems = personalService.previewItems(userId);
         List<String> tags = personalService.previewTags(previewItems);
-        tags.add(0, "All");
+        tags.add(0, "全部");
         model.addAttribute("previewItems", previewItems);
         model.addAttribute("tags", tags);
         return "personal";
